@@ -1,5 +1,7 @@
 # eTimesheets
-Computing SAT
+
+Hey :)
+This is my project for year 12 computing 2018, docs can be found in /docs or at [https://gender-non-binary.github.io/eTimesheets/](https://gender-non-binary.github.io/eTimesheets/)
 
 # License
 
