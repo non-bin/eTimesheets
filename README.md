@@ -1,20 +1,11 @@
 # eTimesheets
 
 Hey :)
-This is my project for year 12 computing 2018, docs can be found in /docs or at [https://gender-non-binary.github.io/eTimesheets/](https://gender-non-binary.github.io/eTimesheets/)
+This is my project for year 12 computing 2018, docs can be found in /docs or at [https://non-bin.github.io/eTimesheets/](https://non-bin.github.io/eTimesheets/)
 
 # License
 
-Copyright 2018 Harry Jacka
+Copyright 2018 Alice Jacka
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+Licensed under the DWEYLWI Lisence.
+Do What Ever You Like With It is a lisense that gives anyone all rights to this software :)
