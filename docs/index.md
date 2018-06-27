@@ -1,4 +1,7 @@
 # eTimesheets
 
-Hey :)
-This is my project for year 12 computing 2018. Nothing is here yet so come back in a week or two :)
+## database.md
+this file contains the database layout and design
+
+## config.php
+this file contains values that must be set depending on the install
