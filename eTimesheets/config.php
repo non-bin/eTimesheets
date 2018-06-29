@@ -1,7 +1,8 @@
 <?php
 
-$servername = "localhost";
-$username = "application";
-$password = "klNIdhU(75^";
+// MySQL database
+$config['sql']['addr']   = 'localhost';
+$config['sql']['uname']  = "application";
+$config['sql']['passwd'] = "klNIdhU(75^";
 
 ?>

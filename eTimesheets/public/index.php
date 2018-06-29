@@ -1,5 +1,6 @@
 <?php
 
+require '../config.php';
 require '../includes/sql.php';
 
 switch ($_GET['p']) {

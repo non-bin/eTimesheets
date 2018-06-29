@@ -1,7 +1,7 @@
 <?php
 
-// Create connection
-$conn = new mysqli($servername, $username, $password);
+// Create connection to the MySQL server
+$this->dbc = new mysqli($config['sql']['addr'], $config['sql']['uname'], $config['sql']['passwd']);
 
 // Check connection
 if ($conn->connect_error) {
