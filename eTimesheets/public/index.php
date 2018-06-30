@@ -4,6 +4,7 @@ $page = (isset($_GET['p'])) ? $_GET['p'] : 'default';
 
 require '../config.php';
 require '../includes/sql.php';
+require '../includes/employeeClass.php';
 
 switch ($page) {
 	case 'test':
