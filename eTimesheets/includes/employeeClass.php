@@ -2,9 +2,12 @@
 
 class Employee
 {
-	private $pin;
+	private $pin; // the pin is private so that the checkPin() method must be used
 
-	public function __construct(Type $var = null) {
+	public $name;
+	public $uid;
+
+	public function __construct(String $uname) {
 		global $dbc; // get access to the dbc
 
 		$stmt = $dbc->prepare('SELECT * FROM employees WHERE uname = ?'); // prepare a request
@@ -16,6 +19,22 @@ class Employee
 
 		$stmt->close();
 
-		return $result->fetch_assoc(); // return the row
+		$result = $result->fetch_assoc();
+
+		$this->pin = $result['pin']; // save the pin,
+		$this->name = $result['name']; // the name,
+		$this->uid = $result['uid']; // and the uid
+
+
+		return true;
+	}
+
+	public function checkPin(String $inputPin) // check if an entered pin in correct
+	{
+		if ($this->pin === $inputPin) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

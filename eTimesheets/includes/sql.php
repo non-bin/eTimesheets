@@ -26,4 +26,3 @@ function getEmployeeList() // get a list of employees usernames
 
     return $ret; // return the list of unames
 }
-
