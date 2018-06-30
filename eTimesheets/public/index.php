@@ -18,3 +18,5 @@ switch ($page) {
 		require '../pages/default.php';
 		break;
 }
+
+$dbc->close(); // close the database connection
