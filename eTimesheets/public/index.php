@@ -1,9 +1,15 @@
 <?php
 
+$page = (isset($_GET['p'])) ? $_GET['p'] : 'default';
+
 require '../config.php';
 require '../includes/sql.php';
 
-switch ($_GET['p']) {
+switch ($page) {
+	case 'test':
+		require '../pages/test.php';
+		break;
+
 	case 'alogin':
 		require '../pages/admin-login.php';
 		break;
