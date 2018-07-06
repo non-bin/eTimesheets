@@ -50,7 +50,7 @@ class Employee
 			$dateEnd   = '9999-12-31 23:59:59';
 		}
 
-		$stmt = $dbc->prepare('SELECT * FROM timesheet WHERE uid = ? AND datetime between ? AND ? order BY datetime DESC;'); // prepare a request
+		$stmt = $dbc->prepare('SELECT * FROM `timesheet` WHERE `uid` = ? AND `datetime` between ? AND ? ORDER BY `datetime`;'); // prepare a request
 		$stmt->bind_param('iss', $this->uid, $dateBegin, $dateEnd);
 		$stmt->execute();
 
