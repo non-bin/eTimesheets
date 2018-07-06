@@ -4,7 +4,7 @@ function getAdminUser(String $uname) // get the uid and password hash of an admi
 {
     global $dbc; // get access to the dbc
 
-    $stmt = $dbc->prepare('SELECT * FROM admin_users WHERE uname = ?'); // prepare a request
+    $stmt = $dbc->prepare('SELECT * FROM `admin_users` WHERE `uname` = ?'); // prepare a request
     $stmt->bind_param('s', $uname); // bind the uname input to the statment
     $stmt->execute();
 

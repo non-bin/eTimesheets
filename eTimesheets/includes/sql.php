@@ -12,7 +12,7 @@ function getEmployeeList() // get a list of employees usernames
 {
     global $dbc; // get access to the dbc
 
-    $stmt = $dbc->prepare('SELECT * FROM employees'); // prepare a request
+    $stmt = $dbc->prepare('SELECT * FROM `employees`'); // prepare a request
     $stmt->execute();
 
     $result = $stmt->get_result();

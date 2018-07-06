@@ -10,7 +10,7 @@ class Employee
 	public function __construct(String $uname) {
 		global $dbc; // get access to the dbc
 
-		$stmt = $dbc->prepare('SELECT * FROM employees WHERE uname = ?'); // prepare a request
+		$stmt = $dbc->prepare('SELECT * FROM `employees` WHERE `uname` = ?'); // prepare a request
 		$stmt->bind_param('s', $uname);
 		$stmt->execute();
 
