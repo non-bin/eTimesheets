@@ -66,7 +66,7 @@ class Employee
 		return $ret;
 	}
 
-	public function addEvenmt(String $dateTime, String $type)
+	public function addEvent(String $dateTime, String $type)
 	{
 		global $dbc; // get access to the dbc
 
