@@ -74,6 +74,14 @@ class Employee
 			return false;
 		}
 
+		$stmt = $dbc->prepare('INSERT INTO `eTimesheets`.`timesheet` (`uid`, `datetime`, `event`) VALUES (?, ?, ?);');
+		$stmt->bind_param('iss', $this->uid, $dateTime, $type);
+		$stmt->execute();
 
+		if ($stmt->affected_rows == 1) {
+			return true;
+		}
+
+		return false;
 	}
 }
