@@ -1,6 +1,6 @@
 <?php
 
-$page = (isset($_GET['p'])) ? $_GET['p'] : 'default';
+$page = (isset($_GET['p'])) ? $_GET['p'] : 'default'; // if a page was specified, use it. if not, use the default
 
 require '../config.php';
 require '../includes/sql.php';
@@ -8,7 +8,7 @@ require '../includes/employeeClass.php';
 require '../includes/eventClass.php';
 require '../includes/adminClass.php';
 
-switch ($page) {
+switch ($page) { // select the requested page
 	case 'test':
 		require '../pages/test.php';
 		break;

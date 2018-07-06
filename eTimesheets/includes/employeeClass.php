@@ -38,17 +38,9 @@ class Employee
 		}
 	}
 
-	public function getEvents($dateBegin = null, $dateEnd = null)
+	public function getEvents($dateBegin = '0000-00-00 00:00:00', $dateEnd = '9999-12-31 23:59:59') // get an array of event objects for this emp within a date range
 	{
 		global $dbc; // get access to the dbc
-
-		if ($dateBegin == null) {
-			$dateBegin = '0000-00-00 00:00:00';
-		}
-
-		if ($dateEnd == null) {
-			$dateEnd   = '9999-12-31 23:59:59';
-		}
 
 		$stmt = $dbc->prepare('SELECT * FROM `timesheet` WHERE `uid` = ? AND `datetime` between ? AND ? ORDER BY `datetime`;'); // prepare a request
 		$stmt->bind_param('iss', $this->uid, $dateBegin, $dateEnd);
@@ -60,17 +52,17 @@ class Employee
 		$stmt->close();
 
 		foreach ($result->fetch_all() as $row) { // loop through each row
-			$ret[] = new Event($row[0], $row[1], $row[2], $row[3]);
+			$ret[] = new Event($row[0], $row[1], $row[2], $row[3]); // and create an event object for each event found
 		}
 
-		return $ret;
+		return $ret; // return the array of events
 	}
 
-	public function addEvent(String $dateTime, String $type)
+	public function addEvent(String $dateTime, String $type) // add an event as this emp
 	{
 		global $dbc; // get access to the dbc
 
-		if (!($type == 'in' || $type == 'ou' || $type == 'bl' || $type == 'el')) {
+		if (!($type == 'in' || $type == 'ou' || $type == 'bl' || $type == 'el')) { // if the event type is invalid
 			return false;
 		}
 
@@ -78,10 +70,10 @@ class Employee
 		$stmt->bind_param('iss', $this->uid, $dateTime, $type);
 		$stmt->execute();
 
-		if ($stmt->affected_rows == 1) {
+		if ($stmt->affected_rows == 1) { // if the request worked properly
 			return true;
 		}
 
-		return false;
+		return false; // something went wrong
 	}
 }

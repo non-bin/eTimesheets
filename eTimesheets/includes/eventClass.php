@@ -1,6 +1,6 @@
 <?php
 
-class Event
+class Event // event object definition
 {
 	public $id;
 	public $uid;
