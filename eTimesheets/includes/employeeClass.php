@@ -65,4 +65,15 @@ class Employee
 
 		return $ret;
 	}
+
+	public function addEvenmt(String $dateTime, String $type)
+	{
+		global $dbc; // get access to the dbc
+
+		if (!($type == 'in' || $type == 'ou' || $type == 'bl' || $type == 'el')) {
+			return false;
+		}
+
+
+	}
 }
