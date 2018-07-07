@@ -76,4 +76,24 @@ class Employee
 
 		return false; // something went wrong
 	}
+
+	public function getLatestEvents()
+	{
+		global $dbc; // get access to the dbc
+
+		$stmt = $dbc->prepare('SELECT * FROM `timesheet` WHERE `datetime` IN ( SELECT MAX( `datetime` ) FROM `timesheet` WHERE `uid` = ? ) AND `uid` = ?;'); // prepare a request
+		$stmt->bind_param('ii', $this->uid, $this->uid);
+		$stmt->execute();
+
+		$result = $stmt->get_result();
+		if($result->num_rows === 0) return false; // if no matchs were found, something's gome wrong so ret0
+
+		$stmt->close();
+
+		foreach ($result->fetch_all() as $row) { // loop through each row
+			$ret[] = new Event($row[0], $row[1], $row[2], $row[3]); // and create an event object for each event found
+		}
+
+		return $ret; // return the array of events
+	}
 }
