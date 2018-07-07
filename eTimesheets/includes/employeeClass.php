@@ -96,4 +96,25 @@ class Employee
 
 		return $ret; // return the array of events
 	}
+
+	public function predictEvent() // attempt to predict what event this emp will log next
+	{
+		$latestTypes = [];
+		$latestEvents = $this->getLatestEvents();
+
+		foreach ($latestEvents as $value) {
+			$latestTypes[] = $value->type;
+		}
+
+		if (in_array($latestTypes, 'ou')) {
+			return 'in';
+		}
+		if (in_array($latestTypes, 'el')) {
+			return 'ou';
+		}
+		if (in_array($latestTypes, 'bl')) {
+			return 'el';
+		}
+		return 'bl';
+	}
 }
