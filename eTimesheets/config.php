@@ -1,6 +1,6 @@
 <?php
 
-$config['main']['title']   = 'eTimesheets'; // custon title (eg page titles, headings etc)
+$config['main']['title'] = 'eTimesheets'; // custon title (eg page titles, headings etc)
 
 // MySQL database
 $config['sql']['addr']   = 'localhost';   // server address

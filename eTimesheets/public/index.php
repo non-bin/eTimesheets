@@ -6,20 +6,20 @@ require '../config.php';
 require '../includes/sql.php';
 require '../includes/employeeClass.php';
 require '../includes/eventClass.php';
-require '../includes/adminClass.php';
+// require '../includes/adminClass.php';
 
 switch ($page) { // select the requested page
-	case 'test':
-		require '../pages/test.php';
-		break;
+    case 'test':
+        require '../pages/test.php';
+        break;
 
-	case 'alogin':
-		require '../pages/admin-login.php';
-		break;
+    case 'alogin':
+        require '../pages/admin-login.php';
+        break;
 
-	default:
-		require '../pages/default.php';
-		break;
+    default:
+        require '../pages/default.php';
+        break;
 }
 
 $dbc->close(); // close the database connection
