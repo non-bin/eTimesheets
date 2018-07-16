@@ -8,7 +8,7 @@ if ($dbc->connect_error) {
     die('<span style="color: red;">Connection to SQL server failed: ' . $dbc->connect_error . '</span>');
 }
 
-function getEmployeeList() // get a list of employees usernames
+function getEmployeeList() // get a list of employee's uids and unames
 {
     global $dbc; // get access to the dbc
 
