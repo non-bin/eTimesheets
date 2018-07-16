@@ -1,0 +1,58 @@
+body
+{
+    foreground-color: #ff5d55;
+    background-color: #ffc8c6;
+}
+
+.header
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1cm;
+}
+
+.avatar
+{
+    width: 3cm;
+    height: 3cm;
+    padding: 0cm 0.2cm;
+}
+
+.main
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    margin: 1cm;
+}
+
+.action
+{
+    background-color: #ff5d55;
+    width: 10cm;
+    height: 10cm;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.action-lable
+{
+    margin: 0;
+    margin-right: 0px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    font-family: Verdana, Tahoma, sans-serif;
+    font-size: 2cm;
+    color: white;
+    text-align: center;
+}
