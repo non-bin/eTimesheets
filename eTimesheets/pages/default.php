@@ -12,7 +12,7 @@ $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 require '../includes/pageDefault.php'; // this file contains all functions needed in the default page
 
 $uid    = (isset($_GET['uid'])) ? $_GET['uid'] : 1 ;               // if a uid was specified use it, if not, use 1
-$action = (isset($_GET['action'])) ? $_GET['action'] : 'default' ; // if an action was specified use it, if not, use 'default'
+$action = (isset($_GET['act'])) ? $_GET['act'] : 'default' ; // if an action was specified use it, if not, use 'default'
 
 $output['title'] = $config['main']['title'] . ' - home'; // define the title using the configured prefix
 $output['uid']   = $uid;
