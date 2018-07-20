@@ -68,14 +68,7 @@ switch ($action) {
         break;
 
     default:
-        $output['actionContent'] = '
-        <span class="action foreground">
-            <span class="action-lable">
-                <form action="?p=default&uid=' . $output['uid'] . '&act=login" method="post">
-                    <input type="text" name="pin" id="pin-input" placeholder="Enter Pin">
-                </form>
-            </span>
-        </span>';
+        $output['actionContent'] = loginButton($output['uid']);
         break;
 }
 
