@@ -1,1 +1,1 @@
-php -S 127.0.0.1:3000 -t ./eTimesheets/public
+php -S 0.0.0.0:3000 -t ./eTimesheets/public
