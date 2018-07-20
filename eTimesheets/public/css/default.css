@@ -56,3 +56,8 @@ body
     color: white;
     text-align: center;
 }
+
+.error
+{
+    font-size: 1cm;
+}
