@@ -41,7 +41,7 @@ $output['style'] .= 'body { background-color: #' . $background . '; } .foregroun
 $empList = getEmployeeList();
 foreach ($empList as $emp) {
     $output['header'] .= '
-    <a class="avatar" href="?p=default&uid= ' . $emp[0] . '">
+    <a class="avatar" href="?p=default&uid=' . $emp[0] . '">
         <img class="avatar" style="filter: hue-rotate(' . calcHueRotate($emp[0]) . 'deg)" src="./img/avatar.png" alt="username">
     </a>';
 }
