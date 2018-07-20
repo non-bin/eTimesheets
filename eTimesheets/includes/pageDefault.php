@@ -2,6 +2,19 @@
 
 require '../includes/hslLib.php';
 
+function loginButton($uid, String $error = '')
+{
+    return '
+    <span class="action foreground">
+        <span class="action-lable">
+            <form action="?p=default&uid=' . $uid . '&act=login" method="post">
+                <span class="error">' . $error . '</span></br>
+                <input type="password" name="pin" id="pin-input" placeholder="Enter Pin" autofocus>
+            </form>
+        </span>
+    </span>';
+}
+
 function calcHueRotate(Int $uid) // calculate what value to hue-rotate the user avatar by
 {
     $ret = 0;
