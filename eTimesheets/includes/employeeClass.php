@@ -7,11 +7,11 @@ class Employee
     public $name;
     public $uid;
 
-    public function __construct(String $uname) {
+    public function __construct(String $uid) {
         global $dbc; // get access to the dbc
 
-        $stmt = $dbc->prepare('SELECT * FROM `employees` WHERE `uname` = ?'); // prepare a request
-        $stmt->bind_param('s', $uname);
+        $stmt = $dbc->prepare('SELECT * FROM `employees` WHERE `uid` = ?'); // prepare a request
+        $stmt->bind_param('s', $uid);
         $stmt->execute();
 
         $result = $stmt->get_result();
