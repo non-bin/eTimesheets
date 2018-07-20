@@ -1,7 +1,7 @@
 body
 {
-    foreground-color: #ff5d55;
-    background-color: #ffc8c6;
+    /* foreground-color: #ff5d55;
+    background-color: #ffc8c6; */
 }
 
 .header
@@ -30,7 +30,6 @@ body
 
 .action
 {
-    background-color: #ff5d55;
     width: 10cm;
     height: 10cm;
     margin: 0;
