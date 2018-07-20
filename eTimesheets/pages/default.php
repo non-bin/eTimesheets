@@ -17,11 +17,12 @@ $action = (isset($_GET['act'])) ? $_GET['act'] : 'default' ; // if an action was
 $output['title'] = $config['main']['title'] . ' - home'; // define the title using the configured prefix
 $output['uid']   = $uid;
 
-$output['style']  = '';
-$output['header'] = '';
-$output['main']   = '';
-$output['footer'] = '';
-$output['action'] = '';
+$output['style']         = '';
+$output['header']        = '';
+$output['main']          = '';
+$output['footer']        = '';
+$output['action']        = '';
+$output['actionContent'] = '';
 
 // calculate the background colour
 $backHsl    = hexToHsl('ffc6c6');
@@ -45,12 +46,25 @@ foreach ($empList as $emp) {
     </a>';
 }
 
-// generate the main action button
+if ($action == 'login') {
+    $employee = new Employee($uid);
+
+    if (isset($_POST['pin']) && $employee->checkPin($_POST['pin'])) { // verify the pin
+        $_SESSION['currentUser'] = $uid; // save the fact that the user is logged in
+    } else {
+        $output['actionContent'] = loginButton($output['uid'], 'INCORRECT PIN!');
+        $action = 'none';
+    }
+}
+
 switch ($action) {
     case 'si':
         $output['actionContent'] = '
-        <a href="?p=default&uid=' . $output['uid'] . '&act=' . $output['action'] . '">
-        </a>';
+        <a href="?p=default&uid=' . $output['uid'] . '&act=' . $output['action'] . '"></a>';
+        break;
+
+    case 'none':
+        // do nothing
         break;
 
     default:
