@@ -102,19 +102,23 @@ class Employee
         $latestTypes = [];
         $latestEvents = $this->getLatestEvents();
 
-        foreach ($latestEvents as $value) {
-            $latestTypes[] = $value->type;
-        }
+        if ($latestEvents) { // if the user has logged anything previously
+            foreach ($latestEvents as $value) {
+                $latestTypes[] = $value->type;
+            }
 
-        if (in_array($latestTypes, 'ou')) {
+            if (in_array($latestTypes, 'ou')) {
+                return 'in';
+            }
+            if (in_array($latestTypes, 'el')) {
+                return 'ou';
+            }
+            if (in_array($latestTypes, 'bl')) {
+                return 'el';
+            }
+            return 'bl';
+        } else { // if this is the first event
             return 'in';
         }
-        if (in_array($latestTypes, 'el')) {
-            return 'ou';
-        }
-        if (in_array($latestTypes, 'bl')) {
-            return 'el';
-        }
-        return 'bl';
     }
 }
