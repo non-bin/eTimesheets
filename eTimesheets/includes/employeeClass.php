@@ -107,13 +107,13 @@ class Employee
                 $latestTypes[] = $value->type;
             }
 
-            if (in_array($latestTypes, 'ou')) {
+            if (in_array('ou', $latestTypes)) {
                 return 'in';
             }
-            if (in_array($latestTypes, 'el')) {
+            if (in_array('el', $latestTypes)) {
                 return 'ou';
             }
-            if (in_array($latestTypes, 'bl')) {
+            if (in_array('bl', $latestTypes)) {
                 return 'el';
             }
             return 'bl';
