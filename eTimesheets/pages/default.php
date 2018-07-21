@@ -60,10 +60,14 @@ if ($action == 'login') {
 
     if (isset($_POST['pin']) && $employee->checkPin($_POST['pin'])) { // verify the pin
         $_SESSION['currentUser'] = $uid; // save the fact that the user is logged in
+        $action = $employee->predictEvent(); // set the action to be interpreted by the main button creation
     } else {
         $output['actionContent'] = loginButton($output['uid'], 'INCORRECT PIN!'); // output the login button with the 'inforrect pin' error
         $action = 'none'; // prevent the button from being recreated
     }
+} elseif (isset($_SESSION['currentUser'])) {
+    $uid = $_SESSION['currentUser']; // retrive the user id from the session
+    $action = $employee->predictEvent(); // set the action to be interpreted by the main button creation
 }
 
 // create the main button
