@@ -32,7 +32,7 @@ function calcHueRotate(Int $uid) // calculate what value to hue-rotate the user 
 
         // this value is aproximatly = ((goldenRatio - 1) * 360) / 6
         // so that practicaly every user will have a unique colour scheme
-        $ret += 40;
+        $ret += 51;
 
         if ($ret > 360) { // if the value excedes 360 (the largest accepted by hue-rotate) wrap back to 0
             $ret = $ret - 360;
