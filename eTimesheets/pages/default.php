@@ -68,7 +68,22 @@ if ($action == 'login') {
 
 // create the main button
 switch ($action) {
-    case 'si':
+    case 'in': // sign in
+        $output['actionContent'] = '
+        <a href="?p=default&uid=' . $output['uid'] . '&act=' . $output['action'] . '"></a>';
+        break;
+
+    case 'ou': // sign out
+        $output['actionContent'] = '
+        <a href="?p=default&uid=' . $output['uid'] . '&act=' . $output['action'] . '"></a>';
+        break;
+
+    case 'bl': // begin lunch
+        $output['actionContent'] = '
+        <a href="?p=default&uid=' . $output['uid'] . '&act=' . $output['action'] . '"></a>';
+        break;
+
+    case 'el': // end lunch
         $output['actionContent'] = '
         <a href="?p=default&uid=' . $output['uid'] . '&act=' . $output['action'] . '"></a>';
         break;
