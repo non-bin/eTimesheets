@@ -10,14 +10,14 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
 
 require '../includes/pageDefault.php'; // this file contains all functions needed in the default page
 
-$uid    = (isset($_GET['uid'])) ? $_GET['uid'] : 1 ;         // if a uid was specified use it, if not, use 1
-
-if (isset($_GET['uid'])) {
+if (isset($_GET['uid'])) { // if a uid was specified use it and destroy the session
     $uid = $_GET['uid'];
 
     // destroy the session as a new user was requested
     session_unset();
     session_destroy();
+} else { // if not, use 1
+    $uid = 1;
 }
 
 $action = (isset($_GET['act'])) ? $_GET['act'] : 'default' ; // if an action was specified use it, if not, use 'default'
@@ -54,10 +54,22 @@ foreach ($empList as $emp) {
     </a>';
 }
 
+if (isset($_SESSION['currentUser'])) {
+    $uid = $_SESSION['currentUser']; // retrive the user id from the session
+}
+
+$employee = new Employee($uid); // create an instance of the employee object
+
+if (isset($_SESSION['currentUser'])) {
+    if (in_array($_GET['action'], ['in', 'ou', 'bl', 'el'])) { // if the user is logging an event
+        $employee->addEvent(date("Y-m-d H:i:s"), $_GET['action']);
+    }
+}
+
+$action = $employee->predictEvent(); // set the action to be interpreted by the main button creation
+
 // handel login request
 if ($action == 'login') {
-    $employee = new Employee($uid); // create an instance of the employee object
-
     if (isset($_POST['pin']) && $employee->checkPin($_POST['pin'])) { // verify the pin
         $_SESSION['currentUser'] = $uid; // save the fact that the user is logged in
         $action = $employee->predictEvent(); // set the action to be interpreted by the main button creation
@@ -65,31 +77,44 @@ if ($action == 'login') {
         $output['actionContent'] = loginButton($output['uid'], 'INCORRECT PIN!'); // output the login button with the 'inforrect pin' error
         $action = 'none'; // prevent the button from being recreated
     }
-} elseif (isset($_SESSION['currentUser'])) {
-    $uid = $_SESSION['currentUser']; // retrive the user id from the session
-    $action = $employee->predictEvent(); // set the action to be interpreted by the main button creation
 }
 
 // create the main button
 switch ($action) {
     case 'in': // sign in
         $output['actionContent'] = '
-        <a href="?p=default&uid=' . $output['uid'] . '&act=' . $output['action'] . '"></a>';
+        <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&act=in">
+            <span class="action-lable">
+                Sign In
+            </span>
+        </a>';
         break;
 
     case 'ou': // sign out
         $output['actionContent'] = '
-        <a href="?p=default&uid=' . $output['uid'] . '&act=' . $output['action'] . '"></a>';
+        <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&act=ou">
+            <span class="action-lable">
+                Sign Out
+            </span>
+        </a>';
         break;
 
     case 'bl': // begin lunch
         $output['actionContent'] = '
-        <a href="?p=default&uid=' . $output['uid'] . '&act=' . $output['action'] . '"></a>';
+        <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&act=bl">
+            <span class="action-lable">
+                Begin Lunch
+            </span>
+        </a>';
         break;
 
     case 'el': // end lunch
         $output['actionContent'] = '
-        <a href="?p=default&uid=' . $output['uid'] . '&act=' . $output['action'] . '"></a>';
+        <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&act=el">
+            <span class="action-lable">
+                Eng Lunch
+            </span>
+        </a>';
         break;
 
     case 'none':
@@ -121,7 +146,7 @@ $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 </span>
 
 <span class="main">
-        <?=$output['actionContent'] ?>
+    <?=$output['actionContent'] ?>
 </span>
 
 <span class="footer">
