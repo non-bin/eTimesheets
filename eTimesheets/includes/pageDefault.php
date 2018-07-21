@@ -15,6 +15,14 @@ function loginButton($uid, String $error = '')
     </span>';
 }
 
+function hueRotate(string $hex, int $uid)
+{
+    $hsl    = hexToHsl($hex);
+    $hsl[0] = calcHueRotate($uid)/360;
+
+    return hslToHex($hsl);
+}
+
 function calcHueRotate(Int $uid) // calculate what value to hue-rotate the user avatar by
 {
     $ret = 0;
