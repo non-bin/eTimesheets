@@ -54,17 +54,19 @@ foreach ($empList as $emp) {
     </a>';
 }
 
+// handel login request
 if ($action == 'login') {
-    $employee = new Employee($uid);
+    $employee = new Employee($uid); // create an instance of the employee object
 
     if (isset($_POST['pin']) && $employee->checkPin($_POST['pin'])) { // verify the pin
         $_SESSION['currentUser'] = $uid; // save the fact that the user is logged in
     } else {
-        $output['actionContent'] = loginButton($output['uid'], 'INCORRECT PIN!');
-        $action = 'none';
+        $output['actionContent'] = loginButton($output['uid'], 'INCORRECT PIN!'); // output the login button with the 'inforrect pin' error
+        $action = 'none'; // prevent the button from being recreated
     }
 }
 
+// create the main button
 switch ($action) {
     case 'si':
         $output['actionContent'] = '
@@ -75,7 +77,7 @@ switch ($action) {
         // do nothing
         break;
 
-    default:
+    default: // login button
         $output['actionContent'] = loginButton($output['uid']);
         break;
 }
