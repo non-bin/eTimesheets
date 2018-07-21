@@ -54,6 +54,14 @@ $background = hueRotate('ffc6c6', $uid);
 $output['style'] .= 'body { background-color: #' . $background . '; } .foreground { background-color: #' . $foreground . '; }';
 
 
+/// action log handler ///
+if (isset($_SESSION['currentUser'])) {
+    if (in_array($_GET['action'], ['in', 'ou', 'bl', 'el'])) { // if the user is logging an event
+        $employee->addEvent(date("Y-m-d H:i:s"), $_GET['action']);
+    }
+}
+
+
 /// login handler ///
 
 if ($action == 'login') {
