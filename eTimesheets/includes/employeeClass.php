@@ -63,7 +63,7 @@ class Employee
         global $dbc; // get access to the dbc
 
         if (!($type == 'in' || $type == 'ou' || $type == 'bl' || $type == 'el')) { // if the event type is invalid
-            return false;
+            return 'invalid type: ' . $type; // return an error
         }
 
         $stmt = $dbc->prepare('INSERT INTO `eTimesheets`.`timesheet` (`uid`, `datetime`, `event`) VALUES (?, ?, ?);');
@@ -74,7 +74,7 @@ class Employee
             return true;
         }
 
-        return false; // something went wrong
+        return 'affected_rows "' . $stmt->affected_rows . '" is not 1'; // return an error
     }
 
     public function getLatestEvents()
