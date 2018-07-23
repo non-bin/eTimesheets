@@ -180,7 +180,7 @@ $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 <head>
     <meta charset="UTF-8">
     <title><?=$output['title'] ?></title>
-    <link rel="stylesheet" href="./css/main.css">
+    <link rel="shortcut icon" href="./img/default.ico" type="image/x-icon" sizes="64x64">
     <link rel="stylesheet" href="./css/default.css">
     <?='<style>' . $output['style'] . '</style>' // for some reason having the style tags outside of php messed with the formating ?>
 </head>
