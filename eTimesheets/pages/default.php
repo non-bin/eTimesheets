@@ -47,7 +47,7 @@ $output['main']          = '';
 $output['footer']        = '';
 $output['action']        = '';
 $output['actionContent'] = '';
-$output['loginError']    = '';
+$output['error']    = '';
 
 // conditional variable setting
 $action        = (isset($_GET['act'])) ? $_GET['act'] : 'default' ; // if an action was specified use it, if not, use 'default'
@@ -145,6 +145,15 @@ switch ($nextAction) {
                 Eng Lunch
             </span>
         </a>';
+        break;
+
+    case 'error':
+    $output['actionContent'] = '
+        <span class="action foreground">
+            <span class="action-lable">
+                <span class="error">' . $output['error'] . '</span>
+            </span>
+        </span>';
         break;
 
     case 'login':
