@@ -61,3 +61,23 @@
 {
     font-size: 1cm;
 }
+
+
+.footer
+{
+    position: fixed;
+    left: 50%;
+    bottom: 20px;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+}
+
+.footerButton
+{
+    color: white;
+    text-decoration: none;
+    font-family: Verdana, Tahoma, sans-serif;
+    font-size: 0.9cm;
+    padding: 12px;
+    border-radius: 7px;
+}

@@ -201,7 +201,8 @@ $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 </span>
 
 <span class="footer">
-    <?=$output['footer'] ?>
+    <a href="?page=default&action=advanced" class="footerButton foreground">Advanced</a>
+    <a href="?page=admin" class="footerButton foreground">Admin</a>
 </span>
 
 </body>
