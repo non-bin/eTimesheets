@@ -2,19 +2,6 @@
 
 require '../includes/hslLib.php';
 
-function loginButton($uid, String $error = '')
-{
-    return '
-    <span class="action foreground">
-        <span class="action-lable">
-            <form action="?p=default&uid=' . $uid . '&act=login" method="post">
-                <span class="error">' . $error . '</span></br>
-                <input type="password" name="pin" id="pin-input" placeholder="Enter Pin" autofocus>
-            </form>
-        </span>
-    </span>';
-}
-
 function hueRotate(string $hex, int $uid)
 {
     $hsl    = hexToHsl($hex);
@@ -40,4 +27,10 @@ function calcHueRotate(Int $uid) // calculate what value to hue-rotate the user 
     }
 
     return $ret;
+}
+
+function destroySession()
+{
+    session_unset();   // unset $_SESSION variable for the run-time
+    session_destroy(); // destroy session data in storage
 }

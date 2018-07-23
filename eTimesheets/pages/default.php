@@ -134,7 +134,15 @@ switch ($nextAction) {
 
     case 'login':
     default: // login button
-        $output['actionContent'] = loginButton($output['uid'], $output['loginError']);
+        $output['actionContent'] = '
+        <span class="action foreground">
+            <span class="action-lable">
+                <form action="?p=default&uid=' . $output['uid'] . '&act=login" method="post">
+                    <span class="error">' . $output['error'] . '</span></br>
+                    <input type="password" name="pin" id="pin-input" placeholder="Enter Pin" autofocus>
+                </form>
+            </span>
+        </span>';
         break;
 }
 
