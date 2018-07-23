@@ -13,8 +13,8 @@ switch ($page) { // select the requested page
         require '../pages/test.php';
         break;
 
-    case 'alogin':
-        require '../pages/admin-login.php';
+    case 'admin':
+        require '../pages/admin.php';
         break;
 
     default:
