@@ -117,7 +117,8 @@ switch ($nextAction) {
         $output['actionContent'] = '
         <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&action=log&event=in">
             <span class="action-lable">
-                Sign In
+                <span class="small">Currently Out</span><br>
+                Sign In</i>
             </span>
         </a>';
         break;
@@ -126,7 +127,8 @@ switch ($nextAction) {
         $output['actionContent'] = '
         <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&action=log&event=ou">
             <span class="action-lable">
-                Sign Out
+                <span class="small">Currently Working</span><br>
+                Sign Out</i>
             </span>
         </a>';
         break;
@@ -135,7 +137,8 @@ switch ($nextAction) {
         $output['actionContent'] = '
         <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&action=log&event=bl">
             <span class="action-lable">
-                Begin Lunch
+                <span class="small">Currently Working</span><br>
+                Begin Lunch</i>
             </span>
         </a>';
         break;
@@ -144,7 +147,8 @@ switch ($nextAction) {
         $output['actionContent'] = '
         <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&action=log&event=el">
             <span class="action-lable">
-                Eng Lunch
+                <span class="small">Currently at Lunch</span><br>
+                Sign In</i>
             </span>
         </a>';
         break;
