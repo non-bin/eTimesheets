@@ -47,8 +47,14 @@
     transform: translate(-50%, -50%);
     font-family: Verdana, Tahoma, sans-serif;
     font-size: 2cm;
+    width: 8cm;
     color: white;
     text-align: center;
+}
+
+.small
+{
+    font-size: 0.4em;
 }
 
 .error

@@ -66,6 +66,8 @@ if (isset($_SESSION['currentUser'], $_GET['action'], $_GET['event']) && $_GET['a
         $output['error'] = $result; // save the error
         error_log($result); // log the error to the console
     }
+
+    destroySession(); // the user has logged an event, so log them out
 }
 
 
@@ -115,7 +117,8 @@ switch ($nextAction) {
         $output['actionContent'] = '
         <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&action=log&event=in">
             <span class="action-lable">
-                Sign In
+                <span class="small">Currently Out</span><br>
+                Sign In</i>
             </span>
         </a>';
         break;
@@ -124,7 +127,8 @@ switch ($nextAction) {
         $output['actionContent'] = '
         <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&action=log&event=ou">
             <span class="action-lable">
-                Sign Out
+                <span class="small">Currently Working</span><br>
+                Sign Out</i>
             </span>
         </a>';
         break;
@@ -133,7 +137,8 @@ switch ($nextAction) {
         $output['actionContent'] = '
         <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&action=log&event=bl">
             <span class="action-lable">
-                Begin Lunch
+                <span class="small">Currently Working</span><br>
+                Begin Lunch</i>
             </span>
         </a>';
         break;
@@ -142,7 +147,8 @@ switch ($nextAction) {
         $output['actionContent'] = '
         <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&action=log&event=el">
             <span class="action-lable">
-                Eng Lunch
+                <span class="small">Currently at Lunch</span><br>
+                Sign In</i>
             </span>
         </a>';
         break;
