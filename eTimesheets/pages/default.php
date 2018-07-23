@@ -54,12 +54,6 @@ $action        = (isset($_GET['act'])) ? $_GET['act'] : 'default' ; // if an act
 $uid           = (isset($_GET['uid'])) ? $_GET['uid'] : 1 ;         // if a uid was specified use it, if not use 1
 $output['uid'] = $uid;
 
-// calculate the background and foregroung colour
-$foreground = hueRotate('ff5d55', $uid);
-$background = hueRotate('ffc6c6', $uid);
-// use the generated colours in a style
-$output['style'] .= 'body { background-color: #' . $background . '; } .foreground { background-color: #' . $foreground . '; }';
-
 
 /// action log handler ///
 
@@ -94,6 +88,12 @@ if (isset($_SESSION['currentUser'])) { // if a user is logged in
 
 
 /// output generation ///
+
+// calculate the background and foregroung colour
+$foreground = hueRotate('ff5d55', $uid);
+$background = hueRotate('ffc6c6', $uid);
+// use the generated colours in a style
+$output['style'] .= 'body { background-color: #' . $background . '; } .foreground { background-color: #' . $foreground . '; }';
 
 // generate the user selection aria
 $empList = getEmployeeList();
