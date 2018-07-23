@@ -8,10 +8,17 @@ require '../includes/pageDefault.php'; // load page specific functions
 /// session ///
 
 session_start(); // initiate the session
-// if the session has been alive more that 2 minuites, destroy it
+
+// if the session has been alive more that 2 minuites
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 120)) {
-    session_unset();   // unset $_SESSION variable for the run-time
-    session_destroy(); // destroy session data in storage
+    error_log('session destroyed: session timed out');
+    destroySession();
+}
+
+// if a new user has been selected
+if (isset($_SESSION['currentUser']) && isset($_GET['uid']) && $_SESSION['currentUser'] != $_GET['uid']) {
+    error_log('session destroyed: new user request');
+    destroySession();
 }
 
 
@@ -55,9 +62,15 @@ $output['style'] .= 'body { background-color: #' . $background . '; } .foregroun
 
 
 /// action log handler ///
-if (isset($_SESSION['currentUser'])) {
-    if (in_array($_GET['action'], ['in', 'ou', 'bl', 'el'])) { // if the user is logging an event
-        $employee->addEvent(date("Y-m-d H:i:s"), $_GET['action']);
+
+// if the user is logged in and trying to log an event
+if (isset($_SESSION['currentUser'], $_GET['action'], $_GET['event']) && $_GET['action'] == 'log' && in_array($_GET['event'], ['in', 'ou', 'bl', 'el'])) {
+    error_log('new event: ' . date("Y-m-d H:i:s") . ' - ' . $_GET['event']);
+    $result = $employee->addEvent(date("Y-m-d H:i:s"), $_GET['event']);
+    if ($result !== true) {
+        $nextAction = 'error'; // tell the output generation there was an error
+        $output['error'] = $result; // save the error
+        error_log($result); // log the error to the console
     }
 }
 
@@ -66,9 +79,11 @@ if (isset($_SESSION['currentUser'])) {
 
 if ($action == 'login') {
     if (isset($_POST['pin']) && $employee->checkPin($_POST['pin'])) { // verify the pin
+        error_log('login: success for uid ' . $_GET['uid']);
         $_SESSION['currentUser'] = $uid; // save the fact that the user is logged in
     } else {
-        $output['loginError'] = 'INCORRECT PIN!'; // create a login error for the main button generator
+        error_log('login: failed for uid ' . $_GET['uid']);
+        $output['error'] = 'INCORRECT PIN!'; // create a login error for the main button generator
         $nextAction = 'login';
     }
 }
