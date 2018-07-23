@@ -113,7 +113,7 @@ if (!isset($nextAction)) {
 switch ($nextAction) {
     case 'in': // sign in
         $output['actionContent'] = '
-        <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&act=in">
+        <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&action=log&event=in">
             <span class="action-lable">
                 Sign In
             </span>
@@ -122,7 +122,7 @@ switch ($nextAction) {
 
     case 'ou': // sign out
         $output['actionContent'] = '
-        <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&act=ou">
+        <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&action=log&event=ou">
             <span class="action-lable">
                 Sign Out
             </span>
@@ -131,7 +131,7 @@ switch ($nextAction) {
 
     case 'bl': // begin lunch
         $output['actionContent'] = '
-        <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&act=bl">
+        <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&action=log&event=bl">
             <span class="action-lable">
                 Begin Lunch
             </span>
@@ -140,7 +140,7 @@ switch ($nextAction) {
 
     case 'el': // end lunch
         $output['actionContent'] = '
-        <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&act=el">
+        <a class="action foreground" href="?p=default&uid=' . $output['uid'] . '&action=log&event=el">
             <span class="action-lable">
                 Eng Lunch
             </span>
