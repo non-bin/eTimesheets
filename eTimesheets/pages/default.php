@@ -66,6 +66,8 @@ if (isset($_SESSION['currentUser'], $_GET['action'], $_GET['event']) && $_GET['a
         $output['error'] = $result; // save the error
         error_log($result); // log the error to the console
     }
+
+    destroySession(); // the user has logged an event, so log them out
 }
 
 
