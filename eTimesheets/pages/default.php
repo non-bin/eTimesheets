@@ -40,7 +40,7 @@ $employee = new Employee($uid); // create an instance of the employee object for
 /// variable definitions ///
 
 // initiate output variables
-$output['title']         = $config['main']['title'] . ' - home'; // define the title using the configured prefix
+$output['title']         = $config['main']['title']; // define the title using the configured prefix
 $output['style']         = '';
 $output['header']        = '';
 $output['main']          = '';
