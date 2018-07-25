@@ -2,7 +2,13 @@
 
 /// session ///
 
-session_start();
+session_start(); // initiate the session
+
+// if the session has been alive more that 2 minuites
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 120)) {
+    error_log('session destroyed: session timed out');
+    destroySession();
+}
 
 
 /// GET arguments ///
@@ -46,3 +52,8 @@ switch ($adminPage) {
         # code...
         break;
 }
+
+
+/// finishing up ///
+
+$_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
