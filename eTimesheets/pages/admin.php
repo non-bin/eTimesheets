@@ -13,7 +13,7 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
 
 /// GET arguments ///
 
-$adminPage = (isset($_GET['a'])) ? $_GET['a'] : 'login' ; // if a page was requested
+$action = (isset($_GET['a'])) ? $_GET['a'] : 'login' ; // if a page was requested
 
 
 /// login handler ///
@@ -30,11 +30,9 @@ if ($action == 'auth') { // authenticate a logon request
 // can be performed without relogging in
 
 
-
-
 /// admin page selection ///
 
-switch ($adminPage) {
+switch ($action) {
     case 'home': // home page
         # code...
         break;
