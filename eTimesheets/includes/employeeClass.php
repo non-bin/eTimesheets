@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Harry Jacka employeeClass.php 1.0 (created 30/6/18)
+ *
+ * handle everything an employee may perform
+ */
+
 class Employee
 {
     private $pin; // the pin is private so that the checkPin() method must be used

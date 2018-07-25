@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Harry Jacka eventClass.php 1.0 (created 6/7/18)
+ *
+ * handle all event related actions, including storing
+ * event information, and handeling updates to the event
+ */
+
 class Event // event object definition
 {
     public $id;

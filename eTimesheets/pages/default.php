@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Harry Jacka default.php 1.0 (created 25/7/18)
+ *
+ * serve and perform the actions available from
+ * the default page
+ */
+
 /// includes ///
 
 require '../includes/pageDefault.php'; // load page specific functions
@@ -177,6 +184,7 @@ switch ($nextAction) {
 }
 
 /// finishing up ///
+
 $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 
 ?>

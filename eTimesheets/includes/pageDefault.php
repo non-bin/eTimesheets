@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Harry Jacka pageDefault.php 1.0 (created 16/7/18)
+ *
+ * contains functions and methods for the default page
+ */
+
 require '../includes/hslLib.php';
 
 function hueRotate(string $hex, int $uid)

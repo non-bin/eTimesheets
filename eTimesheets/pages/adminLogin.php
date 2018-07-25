@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Harry Jacka adminLogin.php 0.1 (created 25/7/18)
+ *
+ * serve the logon page for the admin portal
+ */
+
 /// variable definitions ///
 
 // initiate output variables

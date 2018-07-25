@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Harry Jacka adminClass.php 0.1 (created 5/7/18)
+ *
+ * handle every action an admin may perform
+ */
+
 die('MAKE THE ADMIN A CLASS!');
 
 function getAdminUser(String $uname)

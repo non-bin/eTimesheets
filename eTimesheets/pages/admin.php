@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Harry Jacka admin.php 0.1 (created 27/7/18)
+ *
+ * handle login requests, session timeouts,
+ * and redirect to specific admin pages
+ */
+
 /// session ///
 
 session_start(); // initiate the session

@@ -1,7 +1,14 @@
 <?php
 
-// conversion library from somewhere on the internet :)
-// I didn't write this and I dont have time to understand it
+/**
+ * Anomomous hslLib.php.php 1.0 (created 19/7/18)
+ *
+ * this file was not writen by me, it is a library
+ * anonamously uploaded to a blog
+ *
+ * this file converts hex colours to and from hsl colours
+ * to allow hue rotation
+ */
 
 function hexToHsl($hex) {
     $hex = array($hex[0].$hex[1], $hex[2].$hex[3], $hex[4].$hex[5]);

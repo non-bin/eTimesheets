@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Harry Jacka config.php 1.0 (created 27/6/18)
+ *
+ * set config variable attributes for use throughout the program
+ */
+
 $config['main']['title'] = 'eTimesheets'; // custon title (eg page titles, headings etc)
 
 // MySQL database
