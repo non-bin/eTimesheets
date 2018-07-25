@@ -47,7 +47,8 @@ switch ($action) {
 
     case 'login': // display the login screen
     default:
-        # code...
+        destroySession();
+        require '../pages/adminLogin.php';
         break;
 }
 
