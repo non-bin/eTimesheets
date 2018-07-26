@@ -23,10 +23,39 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
 $action = (isset($_GET['a'])) ? $_GET['a'] : 'login' ; // if a page was requested
 
 
-/// login handler ///
+/// variable declarations ///
+
+$output['error'] = '';
+
+
+/// login and sign up handler ///
 
 if ($action == 'auth') { // authenticate a logon request
     # code...
+
+if ($action == 'su') { // process a sign up request
+    if (isset($_POST['uname'], $_POST['password'], $_POST['confirm']) && $_POST['uname'] != '' && $_POST['password'] != '' && $_POST['confirm'] != '') { // check all values recieved
+        if ($_POST['password'] === $_POST['confirm']) {                  // check passwords identical
+            $output['error'] = 'sign up failed: it\'s not going to be that easy sorry :) I thought I should disable this';
+            error_log($output['error']);
+            $action = 'signUp';
+            // if (addAdminUser($_POST['uname'], $_POST['password'])) {     // add the user
+            //     $action = 'login';
+            //     error_log('sign up sucess: for uname "' . $_POST['uname'] . '"');
+            // } else {
+            //     $output['error'] = 'sign up failed: database error'; // save an error to be reported to the user
+            //     error_log($output['error']);                         // and log it to console
+            // }
+        } else {
+            $output['error'] = 'sign up failed: passwords do not match';
+            error_log($output['error']);
+            $action = 'signUp';
+        }
+    } else {
+        $output['error'] = 'sign up failed: one or more feilds missing';
+        error_log($output['error']);
+        $action = 'signUp';
+    }
 }
 
 
@@ -50,6 +79,10 @@ switch ($action) {
 
     case 'amend': // information amment page
         # code...
+        break;
+
+    case 'signUp':
+        require '../pages/adminSignUp.php';
         break;
 
     case 'login': // display the login screen
