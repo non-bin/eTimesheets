@@ -56,9 +56,16 @@ $output['action']        = '';
 $output['actionContent'] = '';
 $output['error']    = '';
 
+$empIds = [];
+
+$empList = getEmployeeList();
+foreach ($empList as $emp) {
+    $empIds[] = $emp[0];
+}
+
 // conditional variable setting
 $action        = (isset($_GET['act'])) ? $_GET['act'] : 'default' ; // if an action was specified use it, if not, use 'default'
-$uid           = (isset($_GET['uid'])) ? $_GET['uid'] : 1 ;         // if a uid was specified use it, if not use 1
+$uid           = (isset($_GET['uid']) && in_array($_GET['uid'], $empIds)) ? $_GET['uid'] : 1 ;         // if a uid was specified use it, if not use 1
 $output['uid'] = $uid;
 
 
@@ -105,11 +112,10 @@ $background = hueRotate('ffc6c6', $uid);
 $output['style'] .= 'body { background-color: #' . $background . '; } .foreground { background-color: #' . $foreground . '; }';
 
 // generate the user selection aria
-$empList = getEmployeeList();
-foreach ($empList as $emp) {
+foreach ($empIds as $id) {
     $output['header'] .= '
-    <a class="avatar" href="?p=default&uid=' . $emp[0] . '">
-        <img class="avatar" style="filter: hue-rotate(' . calcHueRotate($emp[0]) . 'deg)" src="./img/avatar.png" alt="username">
+    <a class="avatar" href="?p=default&uid=' . $id . '">
+        <img class="avatar" style="filter: hue-rotate(' . calcHueRotate($id) . 'deg)" src="./img/avatar.png" alt="username">
     </a>';
 }
 
