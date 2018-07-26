@@ -15,4 +15,15 @@
 .login
 {
     margin-top: 3cm;
+    width: 9.3cm;
+}
+
+.title
+{
+    font-size: 1.1cm;
+}
+
+.error
+{
+    color: #ff0000;
 }
