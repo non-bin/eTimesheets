@@ -13,7 +13,7 @@ require '../includes/main.php';
 require '../includes/sql.php';
 require '../includes/employeeClass.php';
 require '../includes/eventClass.php';
-// require '../includes/adminClass.php';
+require '../includes/adminClass.php';
 
 switch ($page) { // select the requested page
     case 'test':
