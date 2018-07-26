@@ -88,7 +88,7 @@ if ($action == 'su') { // process a sign up request
 
 switch ($action) {
     case 'home': // home page
-        # code...
+        require '../pages/adminHome.php';
         break;
 
     case 'individual': // individual summary page
