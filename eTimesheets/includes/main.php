@@ -32,3 +32,20 @@ function getEmployeeList() // get a list of employee's uids and unames
 
     return $ret; // return the list of uids and unames
 }
+
+function addAdminUser(String $uname, String $passwd) // add an event as this emp
+{
+    global $dbc; // get access to the dbc
+
+    $hash = password_hash($passwd, PASSWORD_DEFAULT);
+
+    $stmt = $dbc->prepare('INSERT INTO `eTimesheets`.`admin_users` (`uname`, `passwd`) VALUES (?, ?);');
+    $stmt->bind_param('ss', $uname, $hash);
+    $stmt->execute();
+
+    if ($stmt->affected_rows == 1) { // if the request worked properly
+        return true;
+    }
+
+    return false; // return an error
+}
