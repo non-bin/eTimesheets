@@ -27,9 +27,9 @@ $output['title'] = $config['main']['title'] . ' - admin'; // define the title us
 <body>
     <nav class="breadcrumb">
         <a class="breadcrumb-item" href="?p=default">Default</a>
-        <span class="breadcrumb-item active">login</span>
+        <span class="breadcrumb-item active">Login</span>
     </nav>
-    <form action="?p=admin?a=login" method="post">
+    <form action="?p=admin&a=auth" method="post">
         <span class="center">
             <span class="login">
                 <h1>Admin Portal Login</h1>
@@ -40,7 +40,7 @@ $output['title'] = $config['main']['title'] . ' - admin'; // define the title us
                         <div class="input-group-prepend">
                             <div class="input-group-text">:)</div>
                         </div>
-                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
+                        <input name="uname" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username" autofocus>
                     </div>
                 </span>
                 <span>
@@ -49,10 +49,12 @@ $output['title'] = $config['main']['title'] . ' - admin'; // define the title us
                         <div class="input-group-prepend">
                             <div class="input-group-text">#</div>
                         </div>
-                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Password">
+                        <input name="password" type="password" class="form-control" id="inlineFormInputGroup" placeholder="Password">
                     </div>
                 </span>
                 <button type="submit" class="btn btn-outline-dark mb-2">Login</button>
+                <a href="?p=admin&a=signUp" class="btn btn-outline-dark mb-2">Sign Up</a><br>
+                <span class="error"><?=$output['error'] ?></span>
             </span>
         </span>
     </form>

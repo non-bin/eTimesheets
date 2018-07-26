@@ -31,7 +31,25 @@ $output['error'] = '';
 /// login and sign up handler ///
 
 if ($action == 'auth') { // authenticate a logon request
-    # code...
+    if (isset($_POST['uname'], $_POST['password'])) {
+        $user = new Admin($_POST['uname']);
+
+        if ($user->checkPassword($_POST['password'])) {
+            $_SESSION['loggedOnAdmin'] = $_POST['uname'];
+            $action = 'home';
+
+            error_log('admin auth success: for uname "' . $_POST['uname'] . '"');
+        } else {
+            $action = 'login';
+            $output['error'] = 'admin auth failed: incorrect password';
+            error_log($output['error']);
+        }
+    } else {
+        $action = 'login';
+        $output['error'] = 'admin auth failed: one or more feilds missing';
+        error_log($output['error']);
+    }
+}
 
 if ($action == 'su') { // process a sign up request
     if (isset($_POST['uname'], $_POST['password'], $_POST['confirm']) && $_POST['uname'] != '' && $_POST['password'] != '' && $_POST['confirm'] != '') { // check all values recieved
