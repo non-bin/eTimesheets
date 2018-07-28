@@ -18,14 +18,11 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
 }
 
 
-/// GET arguments ///
-
-$action = (isset($_GET['a'])) ? $_GET['a'] : 'login' ; // if a page was requested
-
-
 /// variable declarations ///
 
 $output['error'] = '';
+
+$action = (isset($_GET['a'])) ? $_GET['a'] : '' ;
 
 
 /// login and sign up handler ///
@@ -40,12 +37,10 @@ if ($action == 'auth') { // authenticate a logon request
 
             error_log('admin auth success: for uname "' . $_POST['uname'] . '"');
         } else {
-            $action = 'login';
             $output['error'] = 'admin auth failed: incorrect password';
             error_log($output['error']);
         }
     } else {
-        $action = 'login';
         $output['error'] = 'admin auth failed: one or more feilds missing';
         error_log($output['error']);
     }
@@ -83,6 +78,19 @@ if ($action == 'su') { // process a sign up request
 // because a user stays logged on, so actions
 // can be performed without relogging in
 
+if (isset($_SESSION['loggedOnAdmin'])) { // if a user is logged on
+    $action = ($action != '') ? $action : 'home' ; // give them the page they request, or default to home
+} else {
+    $action = ($action == 'signup') ? $action : 'login' ; // only allow them to visit signup, else default to login
+}
+
+
+
+if (isset($_SESSION['loggedOnAdmin'])) {
+    $uid = $_SESSION['loggedOnAdmin'];
+} elseif (!in_array($action, ['login', 'signup'])) {
+    $action = 'login';
+}
 
 /// admin page selection ///
 
