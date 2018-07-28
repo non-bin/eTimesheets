@@ -7,6 +7,13 @@
  * and redirect to specific admin pages
  */
 
+/// variable declarations ///
+
+$output['error'] = '';
+
+$action = (isset($_GET['a'])) ? $_GET['a'] : '' ;
+
+
 /// session ///
 
 session_start(); // initiate the session
@@ -17,13 +24,6 @@ if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 
     error_log('session destroyed: session timed out');
     destroySession();
 }
-
-
-/// variable declarations ///
-
-$output['error'] = '';
-
-$action = (isset($_GET['a'])) ? $_GET['a'] : '' ;
 
 
 /// login and sign up handler ///
