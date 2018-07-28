@@ -13,6 +13,7 @@ session_start(); // initiate the session
 
 // if the session has been alive more that the set timeout setting minuites
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > $config['misc']['sesTimeout'] || $config['misc']['sesTimeout'] === 0)) {
+    $output['error'] = 'session timed out';
     error_log('session destroyed: session timed out');
     destroySession();
 }
