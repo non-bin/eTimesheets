@@ -27,12 +27,13 @@ $output['title'] = $config['main']['title'] . ' - admin sign up'; // define the 
 <body>
     <nav class="breadcrumb">
         <a class="breadcrumb-item" href="?p=default">Default</a>
+        <a class="breadcrumb-item" href="?p=admin&a=login">Login</a>
         <span class="breadcrumb-item active">Sign Up</span>
     </nav>
     <form action="?p=admin&a=su" method="post">
         <span class="center">
             <span class="login">
-                <h1>Admin Portal Login</h1>
+                <h1>Admin Portal Sign Up</h1>
 
                 <span>
                     <label class="sr-only" for="inlineFormInputGroup">Username</label>
