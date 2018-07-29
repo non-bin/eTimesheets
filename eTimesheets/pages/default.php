@@ -73,8 +73,8 @@ $output['uid'] = $uid;
 
 // if the user is logged in and trying to log an event
 if (isset($_SESSION['currentUser'], $_GET['action'], $_GET['event']) && $_GET['action'] == 'log' && in_array($_GET['event'], ['in', 'ou', 'bl', 'el'])) {
-    error_log('new event: ' . date("Y-m-d H:i:s") . ' - ' . $_GET['event']);
-    $result = $employee->addEvent(date("Y-m-d H:i:s"), $_GET['event']);
+    error_log('new event: ' . sqlDateTime() . ' - ' . $_GET['event']);
+    $result = $employee->addEvent(sqlDateTime(), $_GET['event']);
     if ($result !== true) {
         $nextAction = 'error'; // tell the output generation there was an error
         $output['error'] = $result; // save the error

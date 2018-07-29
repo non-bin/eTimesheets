@@ -47,3 +47,7 @@ function addAdminUser(String $uname, String $passwd) // add an event as this emp
 
     return false; // return an error
 }
+function sqlDateTime() // get the curent dateTime in mySQL format
+{
+    return date("Y-m-d H:i:s");
+}
