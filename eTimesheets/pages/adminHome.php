@@ -11,6 +11,33 @@
 // initiate output variables
 $output['title'] = $config['main']['title'] . ' - admin home'; // define the title using the configured prefix
 
+
+/// output generation ///
+
+$output['table'] = '';
+
+$empList = getEmployeeList();
+
+foreach ($empList as $emp) {
+    $EMHours = $emp->getEMHours();
+    if ($EMHours > 1) { // select the colour for the extra/missed cell
+        $EMColour = 'success';
+    } elseif ($EMHours < 1) {
+        $EMColour = 'danger';
+    } else {
+        $EMColour = 'info';
+    }
+
+    $output['table'] .= '
+    <tr>
+        <td scope="row"><a href="#">' . $emp->name . '</a></td>
+        <td>' . $emp->hoursThisSycle() . '</td>
+        <td>' . $emp->projectHours() . '</td>
+        <td class="table-' . $EMColour . '">' . $EMHours . '</td>
+        <td>' . $emp->currentStatus() . '</td>
+    </tr>';
+}
+
 ?>
 
 <!doctype html>
@@ -31,6 +58,54 @@ $output['title'] = $config['main']['title'] . ' - admin home'; // define the tit
         <span class="breadcrumb-item active">Home</span>
     </nav>
 
+    <div class="container">
+        <div class="row mt-5">
+            <div class="btn-toolbar" role="toolbar">
+                <div class="input-group mr-2">
+                    <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit" id="search">Go</button>
+                    </div>
+                </div>
+
+                <div class="btn-group mr-2" role="group">
+                    <div class="btn-group" role="group">
+                        <button id="sortDropdown" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Sort By
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="sortDropdown">
+                            <a class="dropdown-item" href="#">Name</a>
+                            <a class="dropdown-item" href="#">Hours This Cycle</a>
+                            <a class="dropdown-item" href="#">Predicted Hours</a>
+                            <a class="dropdown-item" href="#">Extra/Missed Hours</a>
+                            <a class="dropdown-item" href="#">Current Status</a>
+                        </div>
+                    </div>
+
+                    <a href="" type="button" class="btn btn-outline-secondary">Invert</a>
+                </div>
+
+                <button type="button" class="btn btn-outline-secondary">Download</button>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Hours This Cycle</th>
+                        <th>Projected Hours</th>
+                        <th>Extra/Missed Hours</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?=$output['table'] ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
 
