@@ -127,4 +127,30 @@ class Employee
             return 'in';
         }
     }
+
+    public function currentStatus() // determine the employee's current status
+    {
+        $latestTypes = [];
+        $latestEvents = $this->getLatestEvents();
+
+        if ($latestEvents) { // if the user has logged anything previously
+            foreach ($latestEvents as $value) {
+                $latestTypes[] = $value->type;
+            }
+
+            if (in_array('ou', $latestTypes)) {
+                return 'out';
+            }
+            if (in_array('el', $latestTypes)) {
+                return 'in';
+            }
+            if (in_array('bl', $latestTypes)) {
+                return 'lunch';
+            }
+            return 'in';
+        } else { // if there are no events
+            return 'out';
+        }
+    }
+
 }
