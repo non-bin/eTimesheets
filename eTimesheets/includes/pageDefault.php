@@ -8,7 +8,7 @@
 
 require '../includes/hslLib.php';
 
-function hueRotate(string $hex, int $uid)
+function hueRotate(String $hex, int $uid)
 {
     $hsl    = hexToHsl($hex);
     $hsl[0] = calcHueRotate($uid)/360;

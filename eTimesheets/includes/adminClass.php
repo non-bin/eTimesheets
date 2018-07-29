@@ -12,7 +12,7 @@ class Admin
 
     public $uname;
 
-    public function __construct(string $uname) {
+    public function __construct(String $uname) {
         global $dbc; // get access to the dbc
 
         $stmt = $dbc->prepare('SELECT * FROM `admin_users` WHERE `uname` = ?'); // prepare a request
@@ -30,7 +30,7 @@ class Admin
         $this->uname       = $uname;
     }
 
-    public function checkPassword(string $password) // check the password against the hash
+    public function checkPassword(String $password) // check the password against the hash
     {
         if (password_verify($password, $this->passwdHash)) {
             return true;
