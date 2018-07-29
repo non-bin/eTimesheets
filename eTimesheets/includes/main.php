@@ -47,6 +47,27 @@ function addAdminUser(String $uname, String $passwd) // add an event as this emp
 
     return false; // return an error
 }
+
+function getAllEvents($dateBegin = '0000-00-00 00:00:00', $dateEnd = '9999-12-31 23:59:59')
+{
+    global $dbc; // get access to the dbc
+
+    $stmt = $dbc->prepare('SELECT * FROM `timesheet` `datetime` between ? AND ? ORDER BY `datetime`;'); // prepare a request
+    $stmt->bind_param('ss', $dateBegin, $dateEnd);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    if($result->num_rows === 0) return false; // if no matchs were found, something's gome wrong so ret0
+
+    $stmt->close();
+
+    foreach ($result->fetch_all() as $row) { // loop through each row
+        $ret[] = new Event($row[0], $row[1], $row[2], $row[3]); // and create an event object for each event found
+    }
+
+    return $ret; // return the array of events
+}
+
 function sqlDateTime() // get the curent dateTime in mySQL format
 {
     return date("Y-m-d H:i:s");
