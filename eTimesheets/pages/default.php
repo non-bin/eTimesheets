@@ -17,7 +17,7 @@ require '../includes/pageDefault.php'; // load page specific functions
 session_start(); // initiate the session
 
 // if the session has been alive more that the set timeout setting minuites
-if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > $config['misc']['sesTimeout'] || $config['misc']['sesTimeout'] === 0)) {
+if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > $config['misc']['sesTimeout']) && $config['misc']['sesTimeout'] !== 0) {
     error_log('session destroyed: session timed out');
     destroySession();
 }
