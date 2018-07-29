@@ -21,4 +21,8 @@ $config['sql']['db']     = 'eTimesheets'; // datamase name
 // set to 0 to disable timeouts
 $config['misc']['sesTimeout'] = 120;
 
+// the global expected hours per sycle, for the
+// extra/missed hours to be calculated from
+$config['misc']['expectedHours'] = 80;
+
 ?>
