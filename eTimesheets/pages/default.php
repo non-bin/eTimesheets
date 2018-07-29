@@ -60,7 +60,7 @@ $empIds = [];
 
 $empList = getEmployeeList();
 foreach ($empList as $emp) {
-    $empIds[] = $emp[0];
+    $empIds[] = $emp->uid;
 }
 
 // conditional variable setting

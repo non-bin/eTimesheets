@@ -25,7 +25,7 @@ function getEmployeeList() // get a list of employee's uids and unames
     $stmt->close();
 
     foreach ($result->fetch_all() as $user) { // loop through each user
-        $ret[] = [$user[0], $user[1]]; // extract the uid and uname to a return array
+        $ret[] = new Employee($user[0]);
     }
 
     return $ret; // return the list of uids and unames
