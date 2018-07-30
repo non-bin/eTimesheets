@@ -153,4 +153,20 @@ class Employee
         }
     }
 
+    public function getEMHours() // calculate the extra/missed hours this sycle
+    {
+        $GLOBALS['config']['misc']['expectedHours'];
+        $this->hoursThisSycle();
+    }
+
+    public function hoursThisSycle() // calculate how long the employee has worked this sycle
+    {
+        $this->getEvents(getSycleDates());
+    }
+
+    public function projectHours() // predict how long the employee will work this sycle
+    {
+        $this->getEvents(getSycleDates());
+        getSycleDates();
+    }
 }
