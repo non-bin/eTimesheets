@@ -25,4 +25,12 @@ $config['misc']['sesTimeout'] = 120;
 // extra/missed hours to be calculated from
 $config['misc']['expectedHours'] = 80;
 
+// a unixtimestamp of the start of one sycle
+// (http://www.onlineconversion.com/unix_time.htm)
+$config['sycle']['start'] = 1532908800;
+
+// length in seconds of a pay sycle
+//                    seconds in a day * days
+$config['sycle']['length'] = 86400 * 14
+
 ?>
