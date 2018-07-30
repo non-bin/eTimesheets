@@ -68,6 +68,11 @@ function getAllEvents($dateBegin = '0000-00-00 00:00:00', $dateEnd = '9999-12-31
     return $ret; // return the array of events
 }
 
+function getSycleDates(String $date = null)
+{
+    $date = ($date === null) ? sqlDateTime() : $date ; // if no date was given, use the curent one
+}
+
 function sqlDateTime() // get the curent dateTime in mySQL format
 {
     return date("Y-m-d H:i:s");
