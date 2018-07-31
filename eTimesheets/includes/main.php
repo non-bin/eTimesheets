@@ -70,7 +70,7 @@ function getAllEvents($dateBegin = '0000-00-00 00:00:00', $dateEnd = '9999-12-31
 
 function getCycleInfo(Int $now = null)
 {
-    $now = ($now === null) ? time() : $now ; // if no date was given, use the curent one
+    defaultTo($now, time()); // if no date was given, use the curent one
 
     $startDif = $now - $GLOBALS['config']['cycle']['start'];
 
@@ -92,7 +92,12 @@ function getCycleInfo(Int $now = null)
 
 function sqlDateTime(Int $now = null) // get the curent dateTime in mySQL format
 {
-    $now = ($now === null) ? time() : $now ;
+    defaultTo($now, time()); // if no date was given, use the curent one
 
     return date("Y-m-d H:i:s", $now);
+}
+
+function defaultTo(&$in, $default) // if a variable is null, set it to the given default value
+{
+    $in = ($in === null) ? $default : $in ;
 }
