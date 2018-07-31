@@ -20,7 +20,6 @@ if (isset($_SESSION['currentUser']) && isset($_GET['uid']) && $_SESSION['current
     destroySession();
 }
 
-
 /// uid selection and employee creation ///
 
 // in essence, if a user is logged in, and a new one has not been requested
@@ -169,6 +168,9 @@ switch ($nextAction) {
 
     case 'login':
     default: // login button
+        error_log('session destroyed: logon page requested');
+        destroySession();
+
         $output['actionContent'] = '
         <span class="action foreground">
             <span class="action-lable">
