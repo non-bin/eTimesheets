@@ -44,12 +44,13 @@ class Employee
         }
     }
 
-    public function getEvents($dateBegin = '0000-00-00 00:00:00', $dateEnd = '9999-12-31 23:59:59') // get an array of event objects for this emp within a date range
+    // todo before 1/1/3001: increase this number       \           /
+    public function getEvents(Int $dateBegin = 0, Int $dateEnd = 32535215999) // get an array of event objects for this emp within a date range
     {
         global $dbc; // get access to the dbc
 
         $stmt = $dbc->prepare('SELECT * FROM `timesheet` WHERE `uid` = ? AND `datetime` between ? AND ? ORDER BY `datetime`;'); // prepare a request
-        $stmt->bind_param('iss', $this->uid, $dateBegin, $dateEnd);
+        $stmt->bind_param('iss', $this->uid, sqlDateTime($dateBegin), sqlDateTime($dateEnd));
         $stmt->execute();
 
         $result = $stmt->get_result();

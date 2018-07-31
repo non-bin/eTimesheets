@@ -48,12 +48,13 @@ function addAdminUser(String $uname, String $passwd) // add an event as this emp
     return false; // return an error
 }
 
-function getAllEvents($dateBegin = '0000-00-00 00:00:00', $dateEnd = '9999-12-31 23:59:59')
+// todo before 1/1/3001: increase this number   \           /
+function getAllEvents($dateBegin = 0, $dateEnd = 32535215999)
 {
     global $dbc; // get access to the dbc
 
     $stmt = $dbc->prepare('SELECT * FROM `timesheet` `datetime` between ? AND ? ORDER BY `datetime`;'); // prepare a request
-    $stmt->bind_param('ss', $dateBegin, $dateEnd);
+    $stmt->bind_param('ss', sqlDateTime($dateBegin), sqlDateTime($dateEnd));
     $stmt->execute();
 
     $result = $stmt->get_result();
