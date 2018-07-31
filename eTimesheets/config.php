@@ -8,11 +8,25 @@
 
 $config['main']['title'] = 'eTimesheets'; // custon title (eg page titles, headings etc)
 
+
 /// MySQL database ///
+
 $config['sql']['addr']   = 'localhost';   // server address
 $config['sql']['uname']  = "application"; // username and
 $config['sql']['passwd'] = "klNIdhU(75^"; // password of user
 $config['sql']['db']     = 'eTimesheets'; // datamase name
+
+
+/// cycle config ///
+
+// the start date of one cycle        \  this bit  /
+$config['cycle']['start'] = strtotime("30 July 2018");
+
+// length in seconds of a pay cycle, eg:
+// +2 weeks, or +1 week 3 days 6 hours 5 minuites 3 seconds
+//                          this thing \        /
+$config['cycle']['length'] = strtotime("+2 weeks", 0);
+
 
 /// random ///
 
@@ -21,16 +35,8 @@ $config['sql']['db']     = 'eTimesheets'; // datamase name
 // set to 0 to disable timeouts
 $config['misc']['sesTimeout'] = 120;
 
-// the global expected hours per sycle, for the
+// the global expected hours per cycle, for the
 // extra/missed hours to be calculated from
 $config['misc']['expectedHours'] = 80;
-
-// a unixtimestamp of the start of one sycle
-// (http://www.onlineconversion.com/unix_time.htm)
-$config['sycle']['start'] = 1532908800;
-
-// length in seconds of a pay sycle
-//                    seconds in a day * days
-$config['sycle']['length'] = 86400 * 14
 
 ?>
