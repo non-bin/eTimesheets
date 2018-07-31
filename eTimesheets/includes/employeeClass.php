@@ -156,12 +156,13 @@ class Employee
     public function getEMHours() // calculate the extra/missed hours this cycle
     {
         $GLOBALS['config']['misc']['expectedHours'];
-        $this->hoursThisCycle();
+        $this->hoursInCycle();
     }
 
-    public function hoursThisCycle() // calculate how long the employee has worked this cycle
+    public function hoursInCycle(Int $now = null) // calculate how long the employee has worked this cycle
     {
-        $this->getEvents(getCycleInfo());
+        $cycle = getCycleInfo();
+        $this->getEvents();
     }
 
     public function projectHours() // predict how long the employee will work this cycle

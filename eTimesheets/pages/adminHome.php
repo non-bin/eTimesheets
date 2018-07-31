@@ -31,7 +31,7 @@ foreach ($empList as $emp) {
     $output['table'] .= '
     <tr>
         <td scope="row"><a href="#">' . $emp->name . '</a></td>
-        <td>' . $emp->hoursThisCycle() . '</td>
+        <td>' . $emp->hoursInCycle() . '</td>
         <td>' . $emp->projectHours() . '</td>
         <td class="table-' . $EMColour . '">' . $EMHours . '</td>
         <td>' . $emp->currentStatus() . '</td>
