@@ -175,8 +175,21 @@ class Employee
 
     public function hoursInCycle(Int $now = null) // calculate how long the employee has worked this cycle
     {
-        $cycle = getCycleInfo();
-        $this->getEvents();
+        defaultTo($now, time()); // if no date was given, use the curent one
+
+        $events = $this->eventsInCycle($now); // get all events in the requested cycle
+
+        $output = 0;
+        $lastTime = 0;
+        foreach ($events as $event) {
+            if (in_array($event->type, ['in', 'el'])) { // if the user is signing in
+                $lastTime = $event->unixTime; // save the time of the sign in
+            } else {
+                $output += $event->unixTime - $lastTime; // add the time they were signed in, to the output
+            }
+        }
+
+        return $output;
     }
 
     public function projectHours() // predict how long the employee will work this cycle
