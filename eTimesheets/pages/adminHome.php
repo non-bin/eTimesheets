@@ -85,7 +85,8 @@ foreach ($empList as $emp) {
                     <a href="" type="button" class="btn btn-outline-secondary">Invert</a>
                 </div>
 
-                <button type="button" class="btn btn-outline-secondary">Download</button>
+                <a href="?p=admin&a=download" class="btn btn-outline-secondary mr-2">Download</a>
+                <a href="?p=admin&a=home" class="btn btn-outline-secondary">Refresh</a>
             </div>
         </div>
 
