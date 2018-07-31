@@ -42,4 +42,9 @@ $config['misc']['sesTimeout'] = 120;
 // extra/missed hours to be calculated from
 $config['misc']['expectedHours'] = 80;
 
+// timezone. doesn't need any more explanation
+// a list of supported ones can be found at
+// https://secure.php.net/manual/en/timezones.php
+$config['misc']['timezone'] = 'Australia/Melbourne';
+
 ?>

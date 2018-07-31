@@ -6,9 +6,11 @@
  * handel main page redirection
  */
 
-$page = (isset($_GET['p'])) ? $_GET['p'] : 'default'; // if a page was specified, use it. if not, use the default
-
 require '../config.php';
+
+$page = (isset($_GET['p'])) ? $_GET['p'] : 'default'; // if a page was specified, use it. if not, use the default
+date_default_timezone_set($config['misc']['timezone']);
+
 require '../includes/main.php';
 require '../includes/sql.php';
 require '../includes/employeeClass.php';
