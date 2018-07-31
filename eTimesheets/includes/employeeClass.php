@@ -161,12 +161,12 @@ class Employee
 
     public function hoursThisCycle() // calculate how long the employee has worked this cycle
     {
-        $this->getEvents(getCycleDates());
+        $this->getEvents(getCycleInfo());
     }
 
     public function projectHours() // predict how long the employee will work this cycle
     {
-        $this->getEvents(getCycleDates());
-        getCycleDates();
+        $this->getEvents(getCycleInfo());
+        getCycleInfo();
     }
 }
