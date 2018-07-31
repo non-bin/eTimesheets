@@ -20,13 +20,18 @@ if ($action == 'auth') { // authenticate a logon request
     if (isset($_POST['uname'], $_POST['password'])) {
         $user = new Admin($_POST['uname']);
 
-        if ($user->checkPassword($_POST['password'])) {
-            $_SESSION['loggedOnAdmin'] = $_POST['uname'];
-            $action = 'home';
+        if (isset($user->uname)) {
+            if ($user->checkPassword($_POST['password'])) {
+                $_SESSION['loggedOnAdmin'] = $_POST['uname'];
+                $action = 'home';
 
-            error_log('admin auth success: for uname "' . $_POST['uname'] . '"');
+                error_log('admin auth success: for uname "' . $_POST['uname'] . '"');
+            } else {
+                $output['error'] = 'admin auth failed: incorrect password';
+                error_log($output['error']);
+            }
         } else {
-            $output['error'] = 'admin auth failed: incorrect password';
+            $output['error'] = 'admin auth failed: incorrect username';
             error_log($output['error']);
         }
     } else {
