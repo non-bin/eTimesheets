@@ -179,17 +179,28 @@ class Employee
 
         $events = $this->eventsInCycle($now); // get all events in the requested cycle
 
-        $output = 0;
-        $lastTime = 0;
-        foreach ($events as $event) {
-            if (in_array($event->type, ['in', 'el'])) { // if the user is signing in
-                $lastTime = $event->unixTime; // save the time of the sign in
-            } else {
-                $output += $event->unixTime - $lastTime; // add the time they were signed in, to the output
+        if ($events) {
+            $signedIn = false;
+            $output   = 0;
+            $lastTime = 0;
+            foreach ($events as $event) {
+                if (in_array($event->type, ['in', 'el'])) { // if the user is signing in
+                    $signedIn = true;
+                    $lastTime = $event->unixTime; // save the time of the sign in
+                } else {
+                    $signedIn = false;
+                    $output += $event->unixTime - $lastTime; // add the time they were signed in, to the output
+                }
             }
-        }
 
-        return $output;
+            if ($signedIn) { // if the emp is currently working
+                $output += time() - $event->unixTime; // add how long they have been signed in, to the output
+            }
+
+            return $output / 3600; // divide by 3600 to get hours
+        } else {
+            return 0;
+        }
     }
 
     public function projectHours() // predict how long the employee will work this cycle
