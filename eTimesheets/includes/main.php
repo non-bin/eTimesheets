@@ -68,9 +68,26 @@ function getAllEvents($dateBegin = '0000-00-00 00:00:00', $dateEnd = '9999-12-31
     return $ret; // return the array of events
 }
 
-function getSycleDates(String $date = null)
+function getCycleInfo(Int $now = null)
 {
-    $date = ($date === null) ? sqlDateTime() : $date ; // if no date was given, use the curent one
+    $now = ($now === null) ? time() : $now ; // if no date was given, use the curent one
+
+    $startDif = $now - $GLOBALS['config']['cycle']['start'];
+
+    while ($startDif > $GLOBALS['config']['cycle']['length']) {
+        $startDif -= $GLOBALS['config']['cycle']['length'];
+    }
+
+    $endDif   = $GLOBALS['config']['cycle']['length'];
+    $begin    = $now - $startDif;
+    $end      = $begin + $GLOBALS['config']['cycle']['length'];
+
+    return [
+        'begin'    => $begin,
+        'end'      => $end,
+        'startDif' => $startDif,
+        'endDif'   => $endDif
+    ];
 }
 
 function sqlDateTime() // get the curent dateTime in mySQL format
