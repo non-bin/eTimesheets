@@ -19,7 +19,10 @@ $config['sql']['db']     = 'eTimesheets'; // datamase name
 
 /// cycle config ///
 
-// the start date of one cycle        \  this bit  /
+// the start date of one cycle. Higher is quicker
+// to calculate, but make it before the first cycle
+// or you will get errors when viewing earlier cycles
+//                                    \  this bit  /
 $config['cycle']['start'] = strtotime("30 July 2018");
 
 // length in seconds of a pay cycle, eg:
