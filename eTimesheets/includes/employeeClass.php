@@ -157,7 +157,14 @@ class Employee
         }
     }
 
+    public function eventsInCycle(Int $now = null) // retrive a list of events in a given cycle
     {
+        defaultTo($now, time()); // if no date was given, use the curent one
+
+        $cycle = getCycleInfo();
+        return $this->getEvents($cycle['begin'], $cycle['end']);
+    }
+
     public function extraHoursInCycle(Int $now = null) // calculate the extra/missed hours this cycle
     {
         defaultTo($now, time()); // if no date was given, use the curent one
