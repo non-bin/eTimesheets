@@ -154,8 +154,11 @@ class Employee
         }
     }
 
-    public function extraHours() // calculate the extra/missed hours this cycle
     {
+    public function extraHoursInCycle(Int $now = null) // calculate the extra/missed hours this cycle
+    {
+        defaultTo($now, time()); // if no date was given, use the curent one
+
         $GLOBALS['config']['misc']['expectedHours'];
         $this->hoursInCycle();
     }
