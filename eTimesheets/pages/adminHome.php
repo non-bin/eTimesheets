@@ -16,9 +16,13 @@ $output['title'] = $config['main']['title'] . ' - admin home'; // define the tit
 
 $output['table'] = '';
 
-$empList = getEmployeeList();
 
+$empList = getEmployeeList();
 foreach ($empList as $emp) {
+    $rawHours = $emp->hoursInCycle(); // retrive the float hours
+    $hours    = floor($rawHours); // calculate hours from that
+    $mins     = round(($rawHours - $hours) * 60); // and minuites from both of them
+
     $EMHours = $emp->extraHoursInCycle();
     if ($EMHours > 1) { // select the colour for the extra/missed cell
         $EMColour = 'success';
@@ -31,7 +35,7 @@ foreach ($empList as $emp) {
     $output['table'] .= '
     <tr>
         <td scope="row"><a href="#">' . $emp->name . '</a></td>
-        <td>' . $emp->hoursInCycle() . '</td>
+        <td>' . $hours . ':' . $mins . '</td>
         <td>' . $emp->projectHours() . '</td>
         <td class="table-' . $EMColour . '">' . $EMHours . '</td>
         <td>' . $emp->currentStatus() . '</td>
