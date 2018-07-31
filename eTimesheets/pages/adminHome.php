@@ -19,7 +19,7 @@ $output['table'] = '';
 $empList = getEmployeeList();
 
 foreach ($empList as $emp) {
-    $EMHours = $emp->getEMHours();
+    $EMHours = $emp->extraHours();
     if ($EMHours > 1) { // select the colour for the extra/missed cell
         $EMColour = 'success';
     } elseif ($EMHours < 1) {

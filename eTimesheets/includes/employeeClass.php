@@ -153,7 +153,7 @@ class Employee
         }
     }
 
-    public function getEMHours() // calculate the extra/missed hours this cycle
+    public function extraHours() // calculate the extra/missed hours this cycle
     {
         $GLOBALS['config']['misc']['expectedHours'];
         $this->hoursInCycle();
