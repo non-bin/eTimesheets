@@ -153,20 +153,20 @@ class Employee
         }
     }
 
-    public function getEMHours() // calculate the extra/missed hours this sycle
+    public function getEMHours() // calculate the extra/missed hours this cycle
     {
         $GLOBALS['config']['misc']['expectedHours'];
-        $this->hoursThisSycle();
+        $this->hoursThisCycle();
     }
 
-    public function hoursThisSycle() // calculate how long the employee has worked this sycle
+    public function hoursThisCycle() // calculate how long the employee has worked this cycle
     {
-        $this->getEvents(getSycleDates());
+        $this->getEvents(getCycleDates());
     }
 
-    public function projectHours() // predict how long the employee will work this sycle
+    public function projectHours() // predict how long the employee will work this cycle
     {
-        $this->getEvents(getSycleDates());
-        getSycleDates();
+        $this->getEvents(getCycleDates());
+        getCycleDates();
     }
 }
