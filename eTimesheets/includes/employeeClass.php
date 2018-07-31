@@ -49,8 +49,11 @@ class Employee
     {
         global $dbc; // get access to the dbc
 
+        $dateBegin = sqlDateTime($dateBegin);
+        $dateEnd   = sqlDateTime($dateEnd);
+
         $stmt = $dbc->prepare('SELECT * FROM `timesheet` WHERE `uid` = ? AND `datetime` between ? AND ? ORDER BY `datetime`;'); // prepare a request
-        $stmt->bind_param('iss', $this->uid, sqlDateTime($dateBegin), sqlDateTime($dateEnd));
+        $stmt->bind_param('iss', $this->uid, $dateBegin, $dateEnd);
         $stmt->execute();
 
         $result = $stmt->get_result();
