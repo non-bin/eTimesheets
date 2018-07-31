@@ -15,9 +15,10 @@ class Event // event object definition
     public $type;
 
     public function __construct(Int $id, Int $uid, String $dateTime, String $type) {
-        $this->id = $id;
-        $this->uid = $uid;
+        $this->id       = $id;
+        $this->uid      = $uid;
         $this->dateTime = $dateTime;
-        $this->type = $type;
+        $this->unixTime = strtotime($dateTime);
+        $this->type     = $type;
     }
 }
