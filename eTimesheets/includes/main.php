@@ -90,7 +90,9 @@ function getCycleInfo(Int $now = null)
     ];
 }
 
-function sqlDateTime() // get the curent dateTime in mySQL format
+function sqlDateTime(Int $now = null) // get the curent dateTime in mySQL format
 {
-    return date("Y-m-d H:i:s");
+    $now = ($now === null) ? time() : $now ;
+
+    return date("Y-m-d H:i:s", $now);
 }
