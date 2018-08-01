@@ -11,7 +11,7 @@
 $empTable = [];
 
 // initiate output variables
-$output['extraParams']  = '';
+$output['search']  = '';
 $output['title']        = $config['main']['title'] . ' - admin home'; // define the title using the configured prefix
 $output['sortInverted'] = false;
 $output['sortBy']       = 'name';
@@ -22,7 +22,7 @@ $output['error']        = '';
 /// output generation ///
 
 if (isset($_GET['search'])) {
-    $output['extraParams'] .= '&search=' . $_GET['search'];
+    $output['search'] .= '&search=' . $_GET['search'];
 }
 
 $empList = getEmployeeList();
@@ -145,17 +145,17 @@ foreach ($empTable as $emp) {
                             Sort By
                         </button>
                         <div class="dropdown-menu" aria-labelledby="sortDropdown">
-                            <a class="dropdown-item" href="?p=admin&a=home&sortBy=name&invert=0<?=$output['extraParams'] ?>">Name</a>
-                            <a class="dropdown-item" href="?p=admin&a=home&sortBy=hours&invert=0<?=$output['extraParams'] ?>">Hours This Cycle</a>
-                            <a class="dropdown-item" href="?p=admin&a=home&sortBy=status&invert=0<?=$output['extraParams'] ?>">Current Status</a>
+                            <a class="dropdown-item" href="?p=admin&a=home&sortBy=name&invert=0<?=$output['search'] ?>">Name</a>
+                            <a class="dropdown-item" href="?p=admin&a=home&sortBy=hours&invert=0<?=$output['search'] ?>">Hours This Cycle</a>
+                            <a class="dropdown-item" href="?p=admin&a=home&sortBy=status&invert=0<?=$output['search'] ?>">Current Status</a>
                         </div>
                     </div>
 
-                    <a href="?p=admin&a=home&sortBy=<?=$output['sortBy'] ?>&invert=<?=($output['sortInverted'] == 1) ? 0 : 1 ; ?><?=$output['extraParams'] ?>" type="button" class="btn btn-outline-secondary">Invert</a>
+                    <a href="?p=admin&a=home&sortBy=<?=$output['sortBy'] ?>&invert=<?=($output['sortInverted'] == 1) ? 0 : 1 ; ?><?=$output['search'] ?>" type="button" class="btn btn-outline-secondary">Invert</a>
                 </div>
 
                 <a href="?p=admin&a=download" class="btn btn-outline-secondary mr-2">Download</a>
-                <a href="?p=admin&a=home&sortBy=<?=$output['sortBy'] ?>&invert=<?=$output['sortInverted'] ?><?=$output['extraParams'] ?>" class="btn btn-outline-secondary">Refresh</a>
+                <a href="?p=admin&a=home&sortBy=<?=$output['sortBy'] ?>&invert=<?=$output['sortInverted'] ?><?=$output['search'] ?>" class="btn btn-outline-secondary">Refresh</a>
 
                 <span class="error"><?=$output['error'] ?></span>
             </div>
