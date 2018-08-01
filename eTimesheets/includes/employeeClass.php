@@ -204,7 +204,6 @@ class Employee
 
     public function projectWork() // predict how long the employee will work this cycle
     {
-        $this->getEvents(getCycleInfo());
-        getCycleInfo();
+        return ($this->workInCycle() / getCycleInfo()['startDif']) * $GLOBALS['config']['cycle']['length'];
     }
 }
