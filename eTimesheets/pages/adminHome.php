@@ -8,37 +8,95 @@
 
 /// variable definitions ///
 
+$empTable = [];
+
 // initiate output variables
-$output['title'] = $config['main']['title'] . ' - admin home'; // define the title using the configured prefix
+$output['extraParams']  = '';
+$output['title']        = $config['main']['title'] . ' - admin home'; // define the title using the configured prefix
+$output['sortInverted'] = false;
+$output['sortBy']       = 'name';
+$output['table']        = '';
+$output['error']        = '';
 
 
 /// output generation ///
 
-$output['table'] = '';
-
+if (isset($_GET['search'])) {
+    $output['extraParams'] .= '&search=' . $_GET['search'];
+}
 
 $empList = getEmployeeList();
-foreach ($empList as $emp) {
-    $rawHours = $emp->hoursInCycle(); // retrive the float hours
-    $hours    = floor($rawHours); // calculate hours from that
-    $mins     = round(($rawHours - $hours) * 60); // and minuites from both of them
-
-    $EMHours = $emp->extraHoursInCycle();
-    if ($EMHours > 1) { // select the colour for the extra/missed cell
+foreach ($empList as $emp) { // create an array of employees to enable sorting before output is generated
+    $EMHours = $emp->extraWorkInCycle();
+    if ($EMHours > 7200) { // select the colour for the extra/missed cell
         $EMColour = 'success';
-    } elseif ($EMHours < 1) {
+    } elseif ($EMHours < -7200) {
         $EMColour = 'danger';
     } else {
         $EMColour = 'info';
     }
 
+    $empTable[] = [$emp->name, $emp->workInCycle(), $emp->projectWork(), $EMColour, $EMHours, $emp->currentStatus()];
+}
+
+// sort the table
+
+if (isset($_GET['invert']) && $_GET['invert'] == 1) {
+    $direction = -1;
+    $output['sortInverted'] = 1;
+} else {
+    $direction = 1;
+    $output['sortInverted'] = 0;
+}
+
+if (isset($_GET['sortBy'])) {
+    $output['sortBy'] = $_GET['sortBy'];
+
+    switch ($_GET['sortBy']) {
+        case 'hours':
+            $sortBy = 1;
+            break;
+
+        case 'status':
+            $sortBy = 5;
+            break;
+
+        case 'name':
+        default:
+            $sortBy = 0;
+            break;
+    }
+} else {
+    $output['sortBy'] = 'name';
+    $sortBy = 0;
+}
+
+if (isset($_GET['search']) && $_GET['search'] != '') {
+    $tmp      = $empTable; // create a temporary backup so that empTable can be re-writen
+    $empTable = []; // and empty empTable
+    foreach ($tmp as $emp) {
+        if (stripos($emp[0], $_GET['search']) !== false) { // if a user matches the search
+            $empTable[] = $emp; // add them back to the list
+        }
+    }
+}
+if ($empTable === []) { // if no matches were found
+    $output['error'] = 'no results found'; // register an error
+    $empTable = $tmp; // and put all employees back into the list
+}
+
+usort($empTable, function($a, $b) { // sort the array with usort
+	return ($a[$GLOBALS['sortBy']] <=> $b[$GLOBALS['sortBy']]) * $GLOBALS['direction']; // accessing the first attribute
+});
+
+foreach ($empTable as $emp) {
     $output['table'] .= '
     <tr>
-        <td scope="row"><a href="#">' . $emp->name . '</a></td>
-        <td>' . $hours . ':' . $mins . '</td>
-        <td>' . $emp->projectHours() . '</td>
-        <td class="table-' . $EMColour . '">' . $EMHours . '</td>
-        <td>' . $emp->currentStatus() . '</td>
+        <td scope="row"><a href="#">' . $emp[0] . '</a></td>
+        <td>' . secondsToHoursMins($emp[1]) . '</td>
+        <td>' . secondsToHoursMins($emp[2]) . '</td>
+        <td class="table-' . $emp[3] . '">' . secondsToHoursMins($emp[4]) . '</td>
+        <td>' . $emp[5] . '</td>
     </tr>';
 }
 
@@ -65,12 +123,18 @@ foreach ($empList as $emp) {
     <div class="container">
         <div class="row mt-5">
             <div class="btn-toolbar" role="toolbar">
-                <div class="input-group mr-2">
-                    <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="submit" id="search">Go</button>
+                <form action="" method="get">
+                    <input type="hidden" name="p" value="admin">
+                    <input type="hidden" name="a" value="home">
+                    <input type="hidden" name="sortBy" value="<?=$output['sortBy'] ?>">
+                    <input type="hidden" name="Invert" value="<?=$output['sortInverted'] ?>">
+                    <div class="input-group mr-2">
+                        <input type="text" name="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit" id="search">Go</button>
+                        </div>
                     </div>
-                </div>
+                </form>
 
                 <div class="btn-group mr-2" role="group">
                     <div class="btn-group" role="group">
@@ -78,19 +142,19 @@ foreach ($empList as $emp) {
                             Sort By
                         </button>
                         <div class="dropdown-menu" aria-labelledby="sortDropdown">
-                            <a class="dropdown-item" href="#">Name</a>
-                            <a class="dropdown-item" href="#">Hours This Cycle</a>
-                            <a class="dropdown-item" href="#">Predicted Hours</a>
-                            <a class="dropdown-item" href="#">Extra/Missed Hours</a>
-                            <a class="dropdown-item" href="#">Current Status</a>
+                            <a class="dropdown-item" href="?p=admin&a=home&sortBy=name&invert=0<?=$output['extraParams'] ?>">Name</a>
+                            <a class="dropdown-item" href="?p=admin&a=home&sortBy=hours&invert=0<?=$output['extraParams'] ?>">Hours This Cycle</a>
+                            <a class="dropdown-item" href="?p=admin&a=home&sortBy=status&invert=0<?=$output['extraParams'] ?>">Current Status</a>
                         </div>
                     </div>
 
-                    <a href="" type="button" class="btn btn-outline-secondary">Invert</a>
+                    <a href="?p=admin&a=home&sortBy=<?=$output['sortBy'] ?>&invert=<?=($output['sortInverted'] == 1) ? 0 : 1 ; ?><?=$output['extraParams'] ?>" type="button" class="btn btn-outline-secondary">Invert</a>
                 </div>
 
                 <a href="?p=admin&a=download" class="btn btn-outline-secondary mr-2">Download</a>
-                <a href="?p=admin&a=home" class="btn btn-outline-secondary">Refresh</a>
+                <a href="?p=admin&a=home&sortBy=<?=$output['sortBy'] ?>&invert=<?=$output['sortInverted'] ?><?=$output['extraParams'] ?>" class="btn btn-outline-secondary">Refresh</a>
+
+                <span class="error"><?=$output['error'] ?></span>
             </div>
         </div>
 
@@ -101,7 +165,7 @@ foreach ($empList as $emp) {
                         <th>Name</th>
                         <th>Hours This Cycle</th>
                         <th>Projected Hours</th>
-                        <th>Extra/Missed Hours</th>
+                        <th>Over/Uner Time</th>
                         <th>Status</th>
                     </tr>
                 </thead>
