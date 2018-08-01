@@ -133,6 +133,9 @@ foreach ($empTable as $emp) {
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="submit" id="search">Go</button>
                         </div>
+                        <div class="input-group-append">
+                            <a href="?p=admin&a=home&sortBy=<?=$output['sortBy'] ?>&invert=<?=$output['sortInverted'] ?>" class="btn btn-outline-secondary" id="search">Clear</a>
+                        </div>
                     </div>
                 </form>
 
