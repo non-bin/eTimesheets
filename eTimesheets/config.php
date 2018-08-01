@@ -40,7 +40,8 @@ $config['misc']['sesTimeout'] = 120;
 
 // the global expected hours per cycle, for the
 // extra/missed hours to be calculated from
-$config['misc']['expectedHours'] = 80;
+//                                 that \  /
+$config['misc']['expectedWork'] = 3600 * 15;
 
 // timezone. doesn't need any more explanation
 // a list of supported ones can be found at

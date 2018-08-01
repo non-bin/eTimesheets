@@ -165,7 +165,7 @@ class Employee
         return $this->getEvents($cycle['begin'], $cycle['end']);
     }
 
-    public function extraHoursInCycle(Int $now = null) // calculate the extra/missed hours this cycle
+    public function extraWorkInCycle(Int $now = null) // calculate the extra/missed time this cycle
     {
         defaultTo($now, time()); // if no date was given, use the curent one
 
@@ -173,7 +173,7 @@ class Employee
         $this->hoursInCycle();
     }
 
-    public function hoursInCycle(Int $now = null) // calculate how long the employee has worked this cycle
+    public function workInCycle(Int $now = null) // calculate how long the employee has worked this cycle
     {
         defaultTo($now, time()); // if no date was given, use the curent one
 
@@ -197,13 +197,13 @@ class Employee
                 $output += time() - $event->unixTime; // add how long they have been signed in, to the output
             }
 
-            return $output / 3600; // divide by 3600 to get hours
+            return $output;
         } else {
             return 0;
         }
     }
 
-    public function projectHours() // predict how long the employee will work this cycle
+    public function projectWork() // predict how long the employee will work this cycle
     {
         $this->getEvents(getCycleInfo());
         getCycleInfo();
