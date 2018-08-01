@@ -105,3 +105,12 @@ function defaultTo(&$in, $default) // if a variable is null, set it to the given
 {
     $in = ($in === null) ? $default : $in ;
 }
+
+function secondsToHoursMins(Int $now) // converts a number of seconds to hours and minuites
+{
+    $floatHours = $now / 3600;
+
+    $hours    = floor($floatHours); // calculate hours from that
+    $mins     = sprintf('%02d', round(($floatHours - $hours) * 60)); // and minuites from both of them
+    return $hours . ':' . $mins;
+}
