@@ -6,6 +6,8 @@
  * handel main page redirection
  */
 
+$error = '';
+
 require '../config.php';
 
 $page = (isset($_GET['p'])) ? $_GET['p'] : 'default'; // if a page was specified, use it. if not, use the default
@@ -26,6 +28,7 @@ session_start(); // initiate the session
 // if the session has been alive more that the set timeout setting minuites
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > $config['misc']['sesTimeout']) && $config['misc']['sesTimeout'] !== 0) {
     error_log('session destroyed: session timed out');
+    $error = 'session timed out';
     destroySession();
 }
 

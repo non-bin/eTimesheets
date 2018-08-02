@@ -9,7 +9,7 @@
 
 /// variable declarations ///
 
-$output['error'] = '';
+$output['error'] = $error;
 
 $action = (isset($_GET['a'])) ? $_GET['a'] : '' ;
 
