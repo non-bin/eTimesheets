@@ -14,11 +14,30 @@ class Event // event object definition
     public $dateTime;
     public $type;
 
-    public function __construct(Int $id, Int $uid, String $dateTime, String $type) {
-        $this->id       = $id;
-        $this->uid      = $uid;
-        $this->dateTime = $dateTime;
-        $this->unixTime = strtotime($dateTime);
-        $this->type     = $type;
+    public function __construct(Int $id, Int $uid = null, String $dateTime = null, String $type = null) {
+        if (isset($uid, $dateTime, $type)) {
+            $this->id       = $id;
+            $this->uid      = $uid;
+            $this->dateTime = $dateTime;
+            $this->unixTime = strtotime($dateTime);
+            $this->type     = $type;
+        } else {
+            global $dbc; // get access to the dbc
+
+            $stmt = $dbc->prepare('SELECT * FROM `timesheet` WHERE `id` = ?;'); // prepare a request
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            $stmt->close();
+
+            $result = $result->fetch_assoc();
+
+            $this->id       = $result['id'];
+            $this->uid      = $result['uid'];
+            $this->dateTime = $result['datetime'];
+            $this->unixTime = strtotime($result['datetime']);
+            $this->type     = $result['event'];
+        }
     }
 }
