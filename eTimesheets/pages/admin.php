@@ -92,11 +92,11 @@ switch ($action) {
         break;
 
     case 'individual': // individual summary page
-        # code...
+        require '../pages/adminIndividual.php';
         break;
 
-    case 'amend': // information amment page
-        # code...
+    case 'amend': // information ammend page
+        require '../pages/adminAmend.php';
         break;
 
     case 'signUp':
