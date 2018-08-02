@@ -36,7 +36,7 @@ foreach ($empList as $emp) { // create an array of employees to enable sorting b
         $EMColour = 'info';
     }
 
-    $empTable[] = [$emp->name, $emp->workInCycle(), $emp->projectWork(), $EMColour, $EMHours, $emp->currentStatus()];
+    $empTable[] = [$emp->uid, $emp->name, $emp->workInCycle(), $emp->projectWork(), $EMColour, $EMHours, $emp->currentStatus()];
 }
 
 // sort the table
@@ -92,11 +92,11 @@ usort($empTable, function($a, $b) { // sort the array with usort
 foreach ($empTable as $emp) {
     $output['table'] .= '
     <tr>
-        <td scope="row"><a href="#">' . $emp[0] . '</a></td>
-        <td>' . secondsToHoursMins($emp[1]) . '</td>
+        <td scope="row"><a href="?p=admin&a=individual&uid=' . $emp[0] . '">' . $emp[1] . '</a></td>
         <td>' . secondsToHoursMins($emp[2]) . '</td>
-        <td class="table-' . $emp[3] . '">' . secondsToHoursMins($emp[4]) . '</td>
-        <td>' . $emp[5] . '</td>
+        <td>' . secondsToHoursMins($emp[3]) . '</td>
+        <td class="table-' . $emp[4] . '">' . secondsToHoursMins($emp[5]) . '</td>
+        <td>' . $emp[6] . '</td>
     </tr>';
 }
 
