@@ -71,17 +71,23 @@ $output['table'] .= '
 
     <div class="container">
         <div class="row mt-5">
-            <table class="table table-bordered table-striped" style="width: unset">
-                <thead>
-                    <tr>
-                        <th>Datetime</th>
-                        <th>Event</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?=$output['table'] ?>
-                </tbody>
-            </table>
+            <form action="?p=admin&a=update" method="post">
+                <table class="table table-bordered table-striped" style="width: unset">
+                    <thead>
+                        <tr>
+                            <th>Datetime</th>
+                            <th>Event</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?=$output['table'] ?>
+                    </tbody>
+                </table>
+                <div class="btn-toolbar" role="toolbar">
+                    <button type="button" onclick="history.back();return false;" class="btn btn-outline-secondary mr-2">Cancel</button>
+                    <button type="submit" class="btn btn-outline-danger">Save</button>
+                </div>
+            </form>
         </div>
     </div>
 
