@@ -58,9 +58,9 @@ $output['infoTable'] .= '
     <td>' . $empOutput[6] . '</td>
 </tr>';
 
-$events = array_reverse($emp->eventsInCycle()); // get all events from the emp, and reverse them, because they are retrived in the wrong order
+$events = $emp->eventsInCycle(); // get all events from the emp, and reverse them, because they are retrived in the wrong order
 if ($events) { // if the employee has logged any events
-    $events = $event;
+    $events = array_reverse($events);
 
     foreach ($events as $event) { // translate the event type into something nicer
         switch ($event->type) {
