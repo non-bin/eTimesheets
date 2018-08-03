@@ -1,19 +1,19 @@
 <?php
 
 /**
- * Harry Jacka pageDefault.php 1.0 (created 16/7/18)
+ * Harry Jacka pageDefault.php 2.0 (created 16/7/18)
  *
  * contains functions and methods for the default page
  */
 
 require '../includes/hslLib.php';
 
-function hueRotate(String $hex, int $uid)
+function hueRotate(String $hex, int $uid) // rotate the hue of a hex colour for a
 {
-    $hsl    = hexToHsl($hex);
-    $hsl[0] = calcHueRotate($uid)/360;
+    $hsl    = hexToHsl($hex);          // convert to hsl
+    $hsl[0] = calcHueRotate($uid)/360; // rotate the hue
 
-    return hslToHex($hsl);
+    return hslToHex($hsl); // convert back to hex and return
 }
 
 function calcHueRotate(Int $uid) // calculate what value to hue-rotate the user avatar by

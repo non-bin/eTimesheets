@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Harry Jacka adminHome.php 0.1 (created 26/7/18)
+ * Harry Jacka adminIndividual.php 1.0 (created 02/08/18)
  *
- * generate a general summary of all employees
+ * generate a general summary of a single employee
  */
 
 /// variable definitions ///
@@ -12,7 +12,7 @@ $empTable = [];
 $cycle    = getCycleInfo();
 
 // initiate output variables
-$output['title']        = $config['main']['title'] . ' - admin home'; // define the title using the configured prefix
+$output['title']        = $config['main']['title'] . ' - Admin Individual'; // define the title using the configured prefix
 $output['infoTable']    = '';
 $output['eventTable']   = '';
 $output['error']        = '';
@@ -22,21 +22,21 @@ $output['cycleEnd']     = '';
 
 /// output generation ///
 
-$output['cycleBegin']   = date("d/m/Y", $cycle['begin']);
-$output['cycleEnd']     = date("d/m/Y", $cycle['end']);
+$output['cycleBegin'] = date("d/m/Y", $cycle['begin']);
+$output['cycleEnd']   = date("d/m/Y", $cycle['end']);
 
-$empList = getEmployeeList();
+$empList = getEmployeeList(); // get a list of valid employee uids
 foreach ($empList as $emp) {
     $empIds[] = $emp->uid;
 }
-if (isset($_GET['uid']) && in_array($_GET['uid'], $empIds)) {
+if (isset($_GET['uid']) && in_array($_GET['uid'], $empIds)) { // if a uid was requested and it exists
     $uid = $_GET['uid'];
 } else {
-    header('Location: ?p=admin&a=home');
-    die();
+    header('Location: ?p=admin&a=home'); // redirect to home
+    die('invalid uid, please go back to <a href="?p=admin&a=home">home</a>');
 }
 
-$emp = new Employee($uid);
+$emp = new Employee($uid); // create an instance for the employee
 
 $EMHours = $emp->extraWorkInCycle();
 if ($EMHours > 7200) { // select the colour for the extra/missed cell
@@ -58,32 +58,39 @@ $output['infoTable'] .= '
     <td>' . $empOutput[6] . '</td>
 </tr>';
 
+$events = array_reverse($emp->eventsInCycle()); // get all events from the emp, and reverse them, because they are retrived in the wrong order
+if ($events) { // if the employee has logged any events
+    $events = $event;
 
-$events = array_reverse($emp->eventsInCycle());
+    foreach ($events as $event) { // translate the event type into something nicer
+        switch ($event->type) {
+            case 'in':
+                $type = 'In';
+                break;
 
-foreach ($events as $event) {
-    switch ($event->type) {
-        case 'in':
-            $type = 'In';
-            break;
+            case 'ou':
+                $type = 'Out';
+                break;
 
-        case 'ou':
-            $type = 'Out';
-            break;
+            case 'bl':
+                $type = 'Begin Lunch';
+                break;
 
-        case 'bl':
-            $type = 'Begin Lunch';
-            break;
+            case 'el':
+                $type = 'End Lunch';
+                break;
+        }
 
-        case 'el':
-            $type = 'End Lunch';
-            break;
+        $output['eventTable'] .= '
+        <tr>
+            <td scope="row"><a href="?p=admin&a=amend&id=' . $event->id . '">' . $event->dateTime . '</a></td>
+            <td>' . $type . '</td>
+        </tr>';
     }
-
+} else {
     $output['eventTable'] .= '
     <tr>
-        <td scope="row"><a href="?p=admin&a=amend&id=' . $event->id . '">' . $event->dateTime . '</a></td>
-        <td>' . $type . '</td>
+        <td scope="row" colspan="2">No Events</td>
     </tr>';
 }
 
@@ -104,7 +111,8 @@ foreach ($events as $event) {
     <nav class="breadcrumb">
         <a class="breadcrumb-item" href="?p=default">Default</a>
         <a class="breadcrumb-item" href="?p=admin&a=login">Login</a>
-        <span class="breadcrumb-item active">Home</span>
+        <a class="breadcrumb-item" href="?p=admin&a=home">Home</a>
+        <span class="breadcrumb-item active">Individual</span>
     </nav>
 
     <div class="container">

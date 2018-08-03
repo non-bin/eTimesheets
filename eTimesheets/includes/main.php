@@ -1,15 +1,15 @@
 <?php
 
 /**
- * Harry Jacka main.php 1.0 (created 25/7/18)
- *
- * contains functions and methods commonly used in
- * multiple main files
- */
+* Harry Jacka main.php 2.0 (created 25/7/18)
+*
+* contains functions and methods commonly used in
+* multiple main files
+*/
 
-function destroySession()
+function destroySession() // this is a function incase a session destruction needs to tbe more complex
 {
-    session_unset();   // destroy the contents of $_SESSION
+    session_unset(); // destroy the contents of $_SESSION
 }
 
 function getEmployeeList() // get a list of employee's uids and unames
@@ -72,19 +72,18 @@ function getAllEvents($dateBegin = 0, $dateEnd = 32535215999)
     return $ret; // return the array of events
 }
 
-function getCycleInfo(Int $now = null)
+function getCycleInfo(Int $now = null) // return some information on a cycle
 {
     defaultTo($now, time()); // if no date was given, use the curent one
 
-    $startDif = $now - $GLOBALS['config']['cycle']['start'];
-
+    $startDif = $now - $GLOBALS['config']['cycle']['start']; // start dif
     while ($startDif > $GLOBALS['config']['cycle']['length']) {
         $startDif -= $GLOBALS['config']['cycle']['length'];
     }
 
-    $endDif   = $GLOBALS['config']['cycle']['length'];
-    $begin    = $now - $startDif;
-    $end      = $begin + $GLOBALS['config']['cycle']['length'];
+    $endDif   = $GLOBALS['config']['cycle']['length'];          // end dif
+    $begin    = $now - $startDif;                               // begin
+    $end      = $begin + $GLOBALS['config']['cycle']['length']; // end
 
     return [
         'begin'    => $begin,

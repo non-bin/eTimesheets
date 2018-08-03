@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Harry Jacka config.php 1.0 (created 27/6/18)
+ * Harry Jacka config.php 2.0 (created 27/6/18)
  *
  * set config variable attributes for use throughout the program
  */
@@ -36,7 +36,7 @@ $config['cycle']['length'] = strtotime("+2 weeks", 0);
 // time untill session timeout, in seconds
 // default 120 (2 minuites)
 // set to 0 to disable timeouts
-$config['misc']['sesTimeout'] = 300;
+$config['misc']['sesTimeout'] = 0;
 
 // the global expected hours per cycle, for the
 // extra/missed hours to be calculated from

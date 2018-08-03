@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Harry Jacka adminClass.php 0.2 (created 5/7/18)
+ * Harry Jacka adminClass.php 1.0 (created 5/7/18)
  *
  * handle every action an admin may perform
  */

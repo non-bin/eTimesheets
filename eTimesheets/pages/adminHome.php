@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Harry Jacka adminHome.php 0.1 (created 26/7/18)
+ * Harry Jacka adminHome.php 1.0 (created 26/7/18)
  *
  * generate a general summary of all employees
  */
@@ -12,7 +12,7 @@ $empTable = [];
 
 // initiate output variables
 $output['search']  = '';
-$output['title']        = $config['main']['title'] . ' - admin home'; // define the title using the configured prefix
+$output['title']        = $config['main']['title'] . ' - Admin Home'; // define the title using the configured prefix
 $output['sortInverted'] = false;
 $output['sortBy']       = 'name';
 $output['table']        = '';
@@ -21,8 +21,8 @@ $output['error']        = '';
 
 /// output generation ///
 
-if (isset($_GET['search'])) {
-    $output['search'] .= '&search=' . $_GET['search'];
+if (isset($_GET['search'])) { // if a search is requested
+    $output['search'] .= '&search=' . $_GET['search']; // save it
 }
 
 $empList = getEmployeeList();
@@ -39,8 +39,9 @@ foreach ($empList as $emp) { // create an array of employees to enable sorting b
     $empTable[] = [$emp->uid, $emp->name, $emp->workInCycle(), $emp->projectWork(), $EMColour, $EMHours, $emp->currentStatus()];
 }
 
-// sort the table
+/// sort the table ///
 
+// set the sort direction (-1 = inverse)
 if (isset($_GET['invert']) && $_GET['invert'] == 1) {
     $direction = -1;
     $output['sortInverted'] = 1;
@@ -49,7 +50,7 @@ if (isset($_GET['invert']) && $_GET['invert'] == 1) {
     $output['sortInverted'] = 0;
 }
 
-if (isset($_GET['sortBy'])) {
+if (isset($_GET['sortBy'])) { // set the index of the arrtivute to sort by
     $output['sortBy'] = $_GET['sortBy'];
 
     switch ($_GET['sortBy']) {
@@ -66,11 +67,12 @@ if (isset($_GET['sortBy'])) {
             $sortBy = 1;
             break;
     }
-} else {
+} else { // or default to name
     $output['sortBy'] = 'name';
     $sortBy = 0;
 }
 
+// if a search is requested
 if (isset($_GET['search']) && $_GET['search'] != '') {
     $tmp      = $empTable; // create a temporary backup so that empTable can be re-writen
     $empTable = []; // and empty empTable
@@ -89,7 +91,7 @@ usort($empTable, function($a, $b) { // sort the array with usort
 	return ($a[$GLOBALS['sortBy']] <=> $b[$GLOBALS['sortBy']]) * $GLOBALS['direction']; // accessing the first attribute
 });
 
-foreach ($empTable as $emp) {
+foreach ($empTable as $emp) { // output each user to the table
     $output['table'] .= '
     <tr>
         <td scope="row"><a href="?p=admin&a=individual&uid=' . $emp[0] . '">' . $emp[1] . '</a></td>

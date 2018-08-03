@@ -1,15 +1,15 @@
 <?php
 
 /**
- * Harry Jacka adminLogin.php 0.1 (created 25/7/18)
+ * Harry Jacka adminSignUp.php 1.0 (created 25/7/18)
  *
- * serve the logon page for the admin portal
+ * a quick way to demonstrait the sign up feature
  */
 
 /// variable definitions ///
 
 // initiate output variables
-$output['title'] = $config['main']['title'] . ' - admin sign up'; // define the title using the configured prefix
+$output['title'] = $config['main']['title'] . ' - Admin Sign Up'; // define the title using the configured prefix
 
 ?>
 

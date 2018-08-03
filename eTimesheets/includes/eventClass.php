@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Harry Jacka eventClass.php 1.0 (created 6/7/18)
+ * Harry Jacka eventClass.php 2.0 (created 6/7/18)
  *
  * handle all event related actions, including storing
  * event information, and handeling updates to the event
@@ -41,7 +41,7 @@ class Event // event object definition
         }
     }
 
-    public function update(String $dateTime, String $type)
+    public function update(String $dateTime, String $type) // update the event
     {
         global $dbc; // get access to the dbc
 
@@ -56,11 +56,11 @@ class Event // event object definition
         return false; // return an error
     }
 
-    public function delete()
+    public function delete() // delete the event
     {
         global $dbc; // get access to the dbc
 
-        $stmt = $dbc->prepare('DELETE FROM `eTimesheets`.`timesheet` WHERE `id`=?;');
+        $stmt = $dbc->prepare('DELETE FROM `eTimesheets`.`timesheet` WHERE `id` = ?;');
         $stmt->bind_param('i', $this->id);
         $stmt->execute();
 

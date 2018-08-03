@@ -4,7 +4,7 @@
  * Anomomous hslLib.php.php 1.0 (created 19/7/18)
  *
  * this file was not writen by me, it is a library
- * anonamously uploaded to a blog
+ * anonamously uploaded to a blog Which I cant find anymore :(
  *
  * this file converts hex colours to and from hsl colours
  * to allow hue rotation

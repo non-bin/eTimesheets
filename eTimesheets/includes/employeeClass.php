@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Harry Jacka employeeClass.php 1.0 (created 30/6/18)
+ * Harry Jacka employeeClass.php 2.0 (created 30/6/18)
  *
  * handle everything an employee may perform
  */
@@ -113,7 +113,7 @@ class Employee
         $latestEvents = $this->getLatestEvents();
 
         if ($latestEvents) { // if the user has logged anything previously
-            foreach ($latestEvents as $value) {
+            foreach ($latestEvents as $value) { // extract the type values
                 $latestTypes[] = $value->type;
             }
 
@@ -138,7 +138,7 @@ class Employee
         $latestEvents = $this->getLatestEvents();
 
         if ($latestEvents) { // if the user has logged anything previously
-            foreach ($latestEvents as $value) {
+            foreach ($latestEvents as $value) { // extract the type values
                 $latestTypes[] = $value->type;
             }
 

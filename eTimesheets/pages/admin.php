@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Harry Jacka admin.php 0.1 (created 27/7/18)
+ * Harry Jacka admin.php 1.0 (created 27/7/18)
  *
  * handle login requests, session timeouts,
  * and redirect to specific admin pages
@@ -17,12 +17,12 @@ $action = (isset($_GET['a'])) ? $_GET['a'] : '' ;
 /// login and sign up handler ///
 
 if ($action == 'auth') { // authenticate a logon request
-    if (isset($_POST['uname'], $_POST['password'])) {
+    if (isset($_POST['uname'], $_POST['password'])) { // if all feilds were sent
         $user = new Admin($_POST['uname']);
 
-        if (isset($user->uname)) {
-            if ($user->checkPassword($_POST['password'])) {
-                $_SESSION['loggedOnAdmin'] = $_POST['uname'];
+        if (isset($user->uname)) {                            // if the user exists
+            if ($user->checkPassword($_POST['password'])) {   // check the password
+                $_SESSION['loggedOnAdmin'] = $_POST['uname']; // save the login to the session
                 $action = 'home';
 
                 error_log('admin auth success: for uname "' . $_POST['uname'] . '"');
@@ -79,18 +79,18 @@ if (isset($_SESSION['loggedOnAdmin'])) { // if a user is logged on
     $action = ($action == 'signUp') ? $action : 'login' ; // only allow them to visit signup, else default to login
 }
 
-if ($action == 'update') {
-    $action = 'individual';
+if ($action == 'update') { // if an event update is requested
+    $action = 'individual'; // give the individual page
 
-    $event = new Event($_GET['id']);
-    $event->update($_POST['datetime'], $_POST['type']);
+    $event = new Event($_GET['id']); // get the event
+    $event->update($_POST['datetime'], $_POST['type']); // and update it
 }
 
-if ($action == 'delete') {
-    $action = 'individual';
+if ($action == 'delete') { // if an event deletion is requested
+    $action = 'individual'; // give the individual page
 
-    $event = new Event($_GET['id']);
-    $event->delete();
+    $event = new Event($_GET['id']); // get the event
+    $event->delete(); // delete it
 }
 
 
