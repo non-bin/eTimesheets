@@ -40,4 +40,34 @@ class Event // event object definition
             $this->type     = $result['event'];
         }
     }
+
+    public function update(String $dateTime, String $type)
+    {
+        global $dbc; // get access to the dbc
+
+        $stmt = $dbc->prepare('UPDATE `eTimesheets`.`timesheet` SET `datetime` = ? , `event` = ? WHERE `id` = ?;');
+        $stmt->bind_param('ssi', $dateTime, $type, $this->id);
+        $stmt->execute();
+
+        if ($stmt->affected_rows == 1) { // if the request worked properly
+            return true;
+        }
+
+        return false; // return an error
+    }
+
+    public function delete()
+    {
+        global $dbc; // get access to the dbc
+
+        $stmt = $dbc->prepare('DELETE FROM `eTimesheets`.`timesheet` WHERE `id`=?;');
+        $stmt->bind_param('i', $this->id);
+        $stmt->execute();
+
+        if ($stmt->affected_rows == 1) { // if the request worked properly
+            return true;
+        }
+
+        return false; // return an error
+    }
 }
