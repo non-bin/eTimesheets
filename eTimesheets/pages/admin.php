@@ -72,17 +72,13 @@ if ($action == 'su') { // process a sign up request
 
 if (isset($_SESSION['loggedOnAdmin'])) { // if a user is logged on
     $action = ($action != '') ? $action : 'home' ; // give them the page they request, or default to home
+    $uid = $_SESSION['loggedOnAdmin'];
+} elseif (!in_array($action, ['login', 'signUp'])) {
+    $action = 'login';
 } else {
     $action = ($action == 'signUp') ? $action : 'login' ; // only allow them to visit signup, else default to login
 }
 
-
-
-if (isset($_SESSION['loggedOnAdmin'])) {
-    $uid = $_SESSION['loggedOnAdmin'];
-} elseif (!in_array($action, ['login', 'signUp'])) {
-    $action = 'login';
-}
 
 /// admin page selection ///
 
