@@ -129,7 +129,7 @@ foreach ($empTable as $emp) {
                     <input type="hidden" name="sortBy" value="<?=$output['sortBy'] ?>">
                     <input type="hidden" name="Invert" value="<?=$output['sortInverted'] ?>">
                     <div class="input-group mr-2">
-                        <input type="text" name="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search">
+                        <input type="text" name="search" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="search" autofocus>
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="submit" id="search">Go</button>
                         </div>
