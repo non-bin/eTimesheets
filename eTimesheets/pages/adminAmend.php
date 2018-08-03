@@ -71,7 +71,7 @@ $output['table'] .= '
 
     <div class="container">
         <div class="row mt-5">
-            <form action="?p=admin&a=update" method="post">
+            <form action="?p=admin&a=update&id=<?=$event->id ?>&uid=<?=$event->uid ?>" method="post">
                 <table class="table table-bordered table-striped" style="width: unset">
                     <thead>
                         <tr>
