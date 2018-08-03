@@ -75,7 +75,7 @@ if (isset($_GET['search']) && $_GET['search'] != '') {
     $tmp      = $empTable; // create a temporary backup so that empTable can be re-writen
     $empTable = []; // and empty empTable
     foreach ($tmp as $emp) {
-        if (stripos($emp[0], $_GET['search']) !== false) { // if a user matches the search
+        if (stripos($emp[1], $_GET['search']) !== false) { // if a user matches the search
             $empTable[] = $emp; // add them back to the list
         }
     }
