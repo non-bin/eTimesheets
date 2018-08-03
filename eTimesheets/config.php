@@ -36,7 +36,7 @@ $config['cycle']['length'] = strtotime("+2 weeks", 0);
 // time untill session timeout, in seconds
 // default 120 (2 minuites)
 // set to 0 to disable timeouts
-$config['misc']['sesTimeout'] = 120;
+$config['misc']['sesTimeout'] = 300;
 
 // the global expected hours per cycle, for the
 // extra/missed hours to be calculated from
