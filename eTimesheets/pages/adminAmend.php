@@ -85,7 +85,8 @@ $output['table'] .= '
                 </table>
                 <div class="btn-toolbar" role="toolbar">
                     <button type="button" onclick="history.back();return false;" class="btn btn-outline-secondary mr-2">Cancel</button>
-                    <button type="submit" class="btn btn-outline-danger">Save</button>
+                    <button type="submit" class="btn btn-outline-danger mr-2">Save</button>
+                    <a href="?p=admin&a=delete&id=<?=$event->id ?>&uid=<?=$event->uid ?>" class="btn btn-outline-danger">Delete</a>
                 </div>
             </form>
         </div>

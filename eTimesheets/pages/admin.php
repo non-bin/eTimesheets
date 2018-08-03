@@ -79,6 +79,20 @@ if (isset($_SESSION['loggedOnAdmin'])) { // if a user is logged on
     $action = ($action == 'signUp') ? $action : 'login' ; // only allow them to visit signup, else default to login
 }
 
+if ($action == 'update') {
+    $action = 'individual';
+
+    $event = new Event($_GET['id']);
+    $event->update($_POST['datetime'], $_POST['type']);
+}
+
+if ($action == 'delete') {
+    $action = 'individual';
+
+    $event = new Event($_GET['id']);
+    $event->delete();
+}
+
 
 /// admin page selection ///
 
