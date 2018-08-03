@@ -54,16 +54,16 @@ if (isset($_GET['sortBy'])) {
 
     switch ($_GET['sortBy']) {
         case 'hours':
-            $sortBy = 1;
+            $sortBy = 2;
             break;
 
         case 'status':
-            $sortBy = 5;
+            $sortBy = 6;
             break;
 
         case 'name':
         default:
-            $sortBy = 0;
+            $sortBy = 1;
             break;
     }
 } else {
