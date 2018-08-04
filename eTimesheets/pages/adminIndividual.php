@@ -90,7 +90,7 @@ if ($events) { // if the employee has logged any events
 } else {
     $output['eventTable'] .= '
     <tr>
-        <td scope="row" colspan="2">No Events</td>
+        <td scope="row" colspan="2">No Events In Current Cycle</td>
     </tr>';
 }
 
