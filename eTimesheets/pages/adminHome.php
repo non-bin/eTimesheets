@@ -156,7 +156,6 @@ foreach ($empTable as $emp) { // output each user to the table
                     <a href="?p=admin&a=home&sortBy=<?=$output['sortBy'] ?>&invert=<?=($output['sortInverted'] == 1) ? 0 : 1 ; ?><?=$output['search'] ?>" type="button" class="btn btn-outline-secondary">Invert</a>
                 </div>
 
-                <a href="?p=admin&a=download" class="btn btn-outline-secondary mr-2">Download</a>
                 <a href="?p=admin&a=home&sortBy=<?=$output['sortBy'] ?>&invert=<?=$output['sortInverted'] ?><?=$output['search'] ?>" class="btn btn-outline-secondary">Refresh</a>
 
                 <span class="error"><?=$output['error'] ?></span>
