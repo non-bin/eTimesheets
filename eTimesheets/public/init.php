@@ -58,6 +58,10 @@ if (isset($_GET['addEmp'])) {
 
 $output = ob_get_clean();
 
+if ($output == '') {
+    $output = 'ayy, is all good :)';
+}
+
 ?>
 
 <!doctype html>
