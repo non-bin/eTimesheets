@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Harry Jacka adminAmend.php 1.0 (created 02/08/18)
+ * Alice Jacka adminAmend.php 1.0 (created 02/08/18)
  *
  * Amend an event's datetime or type, or delete it
  */

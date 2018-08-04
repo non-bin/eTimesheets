@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Harry Jacka index.php 1.1 (created 27/6/18)
+ * Alice Jacka index.php 1.1 (created 27/6/18)
  *
  * handel main page redirection
  */

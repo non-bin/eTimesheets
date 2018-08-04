@@ -1,7 +1,7 @@
 <?php
 
 /**
-* Harry Jacka main.php 2.0 (created 25/7/18)
+* Alice Jacka main.php 2.0 (created 25/7/18)
 *
 * contains functions and methods commonly used in
 * multiple main files

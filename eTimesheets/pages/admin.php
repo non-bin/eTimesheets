@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Harry Jacka admin.php 1.0 (created 27/7/18)
+ * Alice Jacka admin.php 1.0 (created 27/7/18)
  *
  * handle login requests, session timeouts,
  * and redirect to specific admin pages

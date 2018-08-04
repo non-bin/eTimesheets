@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Harry Jacka adminHome.php 1.0 (created 26/7/18)
+ * Alice Jacka adminHome.php 1.0 (created 26/7/18)
  *
  * generate a general summary of all employees
  */

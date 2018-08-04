@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Harry Jacka adminIndividual.php 1.0 (created 02/08/18)
+ * Alice Jacka adminIndividual.php 1.0 (created 02/08/18)
  *
  * generate a general summary of a single employee
  */

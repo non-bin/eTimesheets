@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Harry Jacka default.php 1.0 (created 25/7/18)
+ * Alice Jacka default.php 1.0 (created 25/7/18)
  *
  * serve and perform the actions available from
  * the default page

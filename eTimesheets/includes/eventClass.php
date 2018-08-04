@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Harry Jacka eventClass.php 2.0 (created 6/7/18)
+ * Alice Jacka eventClass.php 2.0 (created 6/7/18)
  *
  * handle all event related actions, including storing
  * event information, and handeling updates to the event

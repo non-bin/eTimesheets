@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Harry Jacka sql.php 1.0 (created 16/7/18)
+ * Alice Jacka sql.php 1.0 (created 16/7/18)
  *
  * handles the connection to the MySQL server
  */

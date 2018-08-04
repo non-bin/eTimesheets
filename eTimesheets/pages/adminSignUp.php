@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Harry Jacka adminSignUp.php 1.0 (created 25/7/18)
+ * Alice Jacka adminSignUp.php 1.0 (created 25/7/18)
  *
  * a quick way to demonstrait the sign up feature
  */

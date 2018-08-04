@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Harry Jacka config.php 2.0 (created 27/6/18)
+ * Alice Jacka config.php 2.0 (created 27/6/18)
  *
  * set config variable attributes for use throughout the program
  */

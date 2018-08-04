@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Harry Jacka employeeClass.php 2.0 (created 30/6/18)
+ * Alice Jacka employeeClass.php 2.0 (created 30/6/18)
  *
  * handle everything an employee may perform
  */

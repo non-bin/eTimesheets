@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Harry Jacka pageDefault.php 2.0 (created 16/7/18)
+ * Alice Jacka pageDefault.php 2.0 (created 16/7/18)
  *
  * contains functions and methods for the default page
  */
