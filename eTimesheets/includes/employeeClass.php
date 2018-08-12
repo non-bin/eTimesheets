@@ -157,18 +157,14 @@ class Employee
         }
     }
 
-    public function eventsInCycle(Int $now = null) // retrive a list of events in a given cycle
+    public function eventsInCycle() // retrive a list of events in a given cycle
     {
-        defaultTo($now, time()); // if no date was given, use the curent one
-
         $cycle = getCycleInfo();
         return $this->getEvents($cycle['begin'], $cycle['end']);
     }
 
-    public function extraWorkInCycle(Int $now = null) // calculate the extra/missed time this cycle
+    public function extraWorkInCycle() // calculate the extra/missed time this cycle
     {
-        defaultTo($now, time()); // if no date was given, use the curent one
-
         return(($GLOBALS['config']['cycle']['expectedWork'] - $this->projectWork()) * -1);
     }
 
