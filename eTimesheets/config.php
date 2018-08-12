@@ -30,6 +30,11 @@ $config['cycle']['start'] = strtotime("30 July 2018");
 //                          this thing \        /
 $config['cycle']['length'] = strtotime("+2 weeks", 0);
 
+// the global expected hours per cycle, for the
+// extra/missed hours to be calculated from
+//                                 that \  /
+$config['cycle']['expectedWork'] = 3600 * 15;
+
 
 /// random ///
 
@@ -37,11 +42,6 @@ $config['cycle']['length'] = strtotime("+2 weeks", 0);
 // default 120 (2 minuites)
 // set to 0 to disable timeouts
 $config['misc']['sesTimeout'] = 0;
-
-// the global expected hours per cycle, for the
-// extra/missed hours to be calculated from
-//                                 that \  /
-$config['misc']['expectedWork'] = 3600 * 15;
 
 // timezone. doesn't need any more explanation
 // a list of supported ones can be found at
