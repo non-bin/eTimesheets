@@ -169,7 +169,7 @@ class Employee
     {
         defaultTo($now, time()); // if no date was given, use the curent one
 
-        return $this->projectWork() - $GLOBALS['config']['misc']['expectedWork'];
+        return(($GLOBALS['config']['cycle']['expectedWork'] - $this->projectWork()) * -1);
     }
 
     public function workInCycle(Int $now = null) // calculate how long the employee has worked this cycle
