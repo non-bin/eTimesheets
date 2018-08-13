@@ -169,7 +169,7 @@ foreach ($empTable as $emp) { // output each user to the table
                         <th>Name</th>
                         <th>Hours This Cycle</th>
                         <th>Projected Hours</th>
-                        <th>Over/Uner Time</th>
+                        <th>Over/Under Time</th>
                         <th>Status</th>
                     </tr>
                 </thead>
