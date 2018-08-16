@@ -170,7 +170,7 @@ class Employee
 
     public function workInCycle(Int $now = null) // calculate how long the employee has worked this cycle
     {
-        defaultTo($now, time()); // if no date was given, use the curent one
+        defaultTo($now, $GLOBALS['config']['debug']['timeOverride']); // if no date was given, use the curent one
 
         $events = $this->eventsInCycle($now); // get all events in the requested cycle
 
@@ -189,7 +189,7 @@ class Employee
             }
 
             if ($signedIn) { // if the emp is currently working
-                $output += time() - $event->unixTime; // add how long they have been signed in, to the output
+                $output += $config['debug']['timeOverride'] - $event->unixTime; // add how long they have been signed in, to the output
             }
 
             return $output;

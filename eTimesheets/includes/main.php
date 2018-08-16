@@ -74,7 +74,7 @@ function getAllEvents($dateBegin = 0, $dateEnd = 32535215999)
 
 function getCycleInfo(Int $now = null) // return some information on a cycle
 {
-    defaultTo($now, time()); // if no date was given, use the curent one
+    defaultTo($now, $GLOBALS['config']['debug']['timeOverride']); // if no date was given, use the curent one
 
     $startDif = $now - $GLOBALS['config']['cycle']['start']; // start dif
     while ($startDif > $GLOBALS['config']['cycle']['length']) {
@@ -95,7 +95,7 @@ function getCycleInfo(Int $now = null) // return some information on a cycle
 
 function sqlDateTime(Int $now = null) // get the curent dateTime in mySQL format
 {
-    defaultTo($now, time()); // if no date was given, use the curent one
+    defaultTo($now, $GLOBALS['config']['debug']['timeOverride']); // if no date was given, use the curent one
 
     return date("Y-m-d H:i:s", $now);
 }

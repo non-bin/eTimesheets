@@ -48,4 +48,11 @@ $config['misc']['sesTimeout'] = 0;
 // https://secure.php.net/manual/en/timezones.php
 $config['misc']['timezone'] = 'Australia/Melbourne';
 
+
+/// debug ///
+
+// override the current time usefull for
+// reproducing a bug. default should be 'time()'
+$config['debug']['timeOverride'] = time();
+
 ?>

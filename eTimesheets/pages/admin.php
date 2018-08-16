@@ -123,4 +123,4 @@ switch ($action) {
 
 /// finishing up ///
 
-$_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+$_SESSION['LAST_ACTIVITY'] = $config['debug']['timeOverride']; // update last activity time stamp
