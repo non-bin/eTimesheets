@@ -60,6 +60,14 @@ $uid           = (isset($_GET['uid']) && in_array($_GET['uid'], $empIds)) ? $_GE
 $output['uid'] = $uid;
 
 
+/// stay logged in handler ///
+
+if (isset($_GET['stayLoggedIn'], $_SESSION['currentUser'])) {
+    $_SESSION['stayLoggedIn'] = $uid;
+    error_log('stayLoggedIn enabled for uid: ' . $uid);
+}
+
+
 /// action log handler ///
 
 // if the user is logged in and trying to log an event
@@ -82,6 +90,7 @@ if ($action == 'login') {
     if (isset($_POST['pin']) && $employee->checkPin($_POST['pin'])) { // verify the pin
         error_log('login: success for uid ' . $_GET['uid']);
         $_SESSION['currentUser'] = $uid; // save the fact that the user is logged in
+        $loggedIn = true;
     } else {
         error_log('login: failed for uid ' . $_GET['uid']);
         $output['error'] = 'INCORRECT PIN!'; // create a login error for the main button generator
@@ -204,13 +213,27 @@ $_SESSION['LAST_ACTIVITY'] = $config['debug']['timeOverride']; // update last ac
     <?=$output['header'] ?>
 </span>
 
+<?php
+
+if (isset($_SESSION['stayLoggedIn'])) {
+    echo 'stayLoggedIn enabled';
+}
+
+?>
+
 <span class="main">
     <?=$output['actionContent'] ?>
 </span>
 
 <span class="footer">
     <!-- <a href="?p=default&action=advanced" class="footerButton foreground">Advanced</a> -->
+
+    <?php if ($loggedIn) { ?>
+        <a href="?p=default&uid=<?=$uid ?>&stayLoggedIn" class="footerButton foreground">Stay Logged In</a>
+    <?php } ?>
+
     <a href="?p=admin" class="footerButton foreground">Admin</a>
+
 </span>
 
 </body>
