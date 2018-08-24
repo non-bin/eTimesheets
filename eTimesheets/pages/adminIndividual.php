@@ -39,9 +39,9 @@ if (isset($_GET['uid']) && in_array($_GET['uid'], $empIds)) { // if a uid was re
 $emp = new Employee($uid); // create an instance for the employee
 
 $EMHours = $emp->extraWorkInCycle();
-if ($EMHours > 7200) { // select the colour for the extra/missed cell
+if ($EMHours > $config['cycle']['overtimeTolerance']) { // select the colour for the extra/missed cell
     $EMColour = 'success';
-} elseif ($EMHours < -7200) {
+} elseif ($EMHours < -$config['cycle']['overtimeTolerance']) {
     $EMColour = 'danger';
 } else {
     $EMColour = 'info';

@@ -35,6 +35,12 @@ $config['cycle']['length'] = strtotime("+2 weeks", 0);
 //                                 that \  /
 $config['cycle']['expectedWork'] = 3600 * 15;
 
+// the global tollerence for over/under time
+// ie. how large should the blue window be
+// when displaying over/under time
+//                                       that \ /
+$config['cycle']['overtimeTolerance'] = 3600 * 2;
+
 
 /// random ///
 

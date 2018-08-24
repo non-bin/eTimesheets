@@ -28,9 +28,9 @@ if (isset($_GET['search'])) { // if a search is requested
 $empList = getEmployeeList();
 foreach ($empList as $emp) { // create an array of employees to enable sorting before output is generated
     $EMHours = $emp->extraWorkInCycle();
-    if ($EMHours > 7200) { // select the colour for the extra/missed cell
+    if ($EMHours > $config['cycle']['overtimeTolerance']) { // select the colour for the extra/missed cell
         $EMColour = 'success';
-    } elseif ($EMHours < -7200) {
+    } elseif ($EMHours < -$config['cycle']['overtimeTolerance']) {
         $EMColour = 'danger';
     } else {
         $EMColour = 'info';
